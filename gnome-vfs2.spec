@@ -113,10 +113,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
-%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.??
+%{_libdir}/gnome-vfs-2.0/modules/*.la
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
 %attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
-%{_libdir}/bonobo/monikers/*.??
+%{_libdir}/bonobo/monikers/*.la
+%attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
 
 %files devel
 %defattr(644,root,root,755)
