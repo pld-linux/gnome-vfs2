@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.1.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.1/gnome-vfs-%{version}.tar.bz2
@@ -94,9 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir} 
-
-mv $RPM_BUILD_ROOT/usr/{X11R6/share/aclocal,share/aclocal}
+	pkgconfigdir=%{_pkgconfigdir} \
+	m4dir=%{_aclocaldir}
 
 %find_lang gnome-vfs-2.0
 
