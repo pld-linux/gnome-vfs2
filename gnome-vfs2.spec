@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.4.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.4/gnome-vfs-%{version}.tar.bz2
@@ -77,7 +77,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch3 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
@@ -95,8 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4dir=%{_aclocaldir}
 
-# no static modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.a
+# no static gnomevfs or bonobo modules and *.la for them
+rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
 
 %find_lang gnome-vfs-2.0
 
@@ -119,11 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
-%{_libdir}/gnome-vfs-2.0/modules/*.la
 %attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
-%{_libdir}/bonobo/monikers/*.la
 
 %files devel
 %defattr(644,root,root,755)
