@@ -47,7 +47,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	desktop-file-utils >= 0.9
 %{?with_hal:Requires:	hal-libs >= 0.4.7}
-Requires:	howl-libs >= 0.9.6-2
+Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.8.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
@@ -69,7 +69,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.10.0
 Requires:	gtk-doc-common
-Requires:	howl-devel >= 0.9.6-2
+Requires:	howl-devel >= 0.9.10
 Requires:	libbonobo-devel >= 2.8.1
 Requires:	openssl-devel >= 0.9.7d
 
