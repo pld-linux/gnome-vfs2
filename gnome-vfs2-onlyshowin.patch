@@ -1,0 +1,92 @@
+diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c
+--- gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c	2003-09-27 17:42:52.000000000 +0200
++++ gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c	2003-12-15 00:06:59.046969168 +0100
+@@ -50,12 +50,40 @@
+ 	   gushort      weight)
+ {
+ 	Entry *entry;
++	gchar *onlyshowin;
+ 
+ 	entry = g_new0 (Entry, 1);
++	entry->filename = g_strdup (filename);
++
++	entry_quick_read_keys (entry, 
++			       "OnlyShowIn",
++			       &onlyshowin,
++			       NULL,
++			       NULL);
++
++	if (onlyshowin) {
++		char **parsed = g_strsplit (onlyshowin, ";", -1);
++		gboolean show = FALSE;
++		int i;
++		
++		for (i = 0; parsed[i] != NULL; i++) {
++			if (!g_ascii_strcasecmp(parsed[i],"GNOME"))
++				show=TRUE;
++		}
++		
++		g_free (onlyshowin);
++		g_strfreev (parsed);
++		
++		if (!show) {
++			g_free (entry->filename);
++			g_free (entry);
++			return NULL;
++		}
++	}
++
+ 	entry->refcnt = 1;
+ 	entry->allocs = 0;
+ 	entry->info = info;
+-	entry->filename = g_strdup (filename);
+ 	entry->displayname = g_strdup (displayname);
+ 	entry->user_private = user_private;
+ 	entry->weight = weight;
+@@ -81,6 +109,8 @@
+ void 
+ entry_unref (Entry *entry)
+ {
++	if (entry == NULL) return;
++	
+ 	entry->refcnt--;
+ 
+ 	if (entry->refcnt == 0) {
+@@ -734,11 +764,10 @@
+ 		}
+ 	}
+ 
+-	if (entry) {
++	if (entry)
+ 		folder_add_entry (folder, entry);
+-		entry_unref (entry);
+-	}
+ 
++	entry_unref (entry);
+ 	return entry != NULL;
+ }
+ 
+@@ -785,9 +814,12 @@
+ 				   basename, 
+ 				   TRUE,
+ 				   1000 /*weight*/);
+-		folder_add_entry (folder, entry);
++				   
++	        if (entry) {
++			folder_add_entry (folder, entry);
++			entry_unref (entry);
++		}
+ 
+-		entry_unref (entry);
+ 		gnome_vfs_uri_unref (uri);
+ 		g_free (basename);
+ 
+@@ -866,7 +898,7 @@
+ 				   900   /*weight*/);
+ 
+ 		/* Include unless specifically excluded by query */
+-		if (!query || query_try_match (query, folder, entry)) {
++		if (entry && (!query || query_try_match (query, folder, entry))) {
+ 			D (g_print ("ADDING EXTENDED ENTRY: "
+ 				    "%s, %s, #%d!\n",
+ 				    folder_get_name (folder),
