@@ -14,7 +14,7 @@ BuildRequires:	ORBit2-devel >= 2.7.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-BuildRequires:	docbook-dtd412-xml >= 1.0-10 
+BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
@@ -95,7 +95,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.a
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   
+%post
 /sbin/ldconfig
 %gconf_schema_install
 
