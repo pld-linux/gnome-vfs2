@@ -10,7 +10,6 @@ Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 Patch2:		%{name}-applnk.patch
 Patch3:		%{name}-am.patch
-Patch4:		%{name}-paths.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -75,7 +74,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 rm -f missing
