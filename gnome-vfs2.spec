@@ -69,8 +69,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 rm -f missing
 libtoolize --copy --force
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--disable-gtk-doc
 %{__make}
