@@ -30,7 +30,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
-BuildConflicts:	bonobo-activation >= 2.1.0
+BuildConflicts:	bonobo-activation-devel >= 2.1.0
 Requires:	bonobo-activation >= 1.0.0
 Conflicts:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
