@@ -13,7 +13,6 @@ BuildRequires:	GConf2-devel >= 2.2.0
 BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.2.0
 BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 BuildRequires:	fam-devel
@@ -24,13 +23,13 @@ BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.0.1-3
 BuildRequires:	gtk-doc >= 0.9-6
-BuildRequires:	libbonobo-devel >= 2.2.0
+BuildRequires:	libbonobo-devel >= 2.3.1-4
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-Requires:	bonobo-activation >= 2.2.0
+Requires:	libbonobo >= 2.3.1-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
