@@ -29,7 +29,7 @@ BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.4.4
-BuildRequires:	gnome-common >= 2.4.0
+BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.4.4
@@ -114,7 +114,7 @@ Menu GNOME przy u¿yciu vfolder.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
