@@ -1,49 +1,57 @@
+#
+# Conditional build:
+%bcond_with	hal	# use hal
+#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.6.2
-Release:	2
+Version:	2.8.0
+Release:	1
 License:	GPL
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.6/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	61bf3e145652089c63edd423ecbc9eba
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.8/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	fbb17f6937b8210ba4bdc7f47dc2ad8b
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
-Patch2:		%{name}-locale-names.patch
-Patch3:		%{name}-onlyshowin.patch
-Patch4:		%{name}-capplets-dir.patch
-Patch5:		%{name}-mime.patch
-Patch6:		%{name}-gnome2-dir.patch
+Patch2:		%{name}-onlyshowin.patch
+Patch3:		%{name}-capplets-dir.patch
+Patch4:		%{name}-gnome2-dir.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.6.0
-BuildRequires:	ORBit2-devel >= 1:2.10.0
+BuildRequires:	GConf2-devel >= 2.7.92
+BuildRequires:	ORBit2-devel >= 1:2.11.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
+BuildRequires:	dbus-glib-devel >= 0.22
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.4.0
+BuildRequires:	glib2-devel >= 1:2.4.4
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
+%{?with_hal:BuildRequires:	hal-devel >= 0.2.97}
+BuildRequires:	heimdal-devel
+BuildRequires:	howl-devel >= 0.9.6
 BuildRequires:	intltool >= 0.30
-BuildRequires:	libbonobo-devel >= 2.6.0
+BuildRequires:	libbonobo-devel >= 2.6.1
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.5.10
+BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-Requires:	libbonobo >= 2.6.0
-Requires:	shared-mime-info >= 0.14-2
+Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module >= 1.0-1
+%{?with_hal:Requires:	hal >= 0.2.97}
+Requires:	libbonobo >= 2.6.1
+Requires:	shared-mime-info >= 0.14
 Obsoletes:	gnome-vfs-extras
 Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,9 +67,9 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.6.0
+Requires:	GConf2-devel >= 2.7.92
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.6.0
+Requires:	libbonobo-devel >= 2.6.1
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
@@ -86,9 +94,9 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 Summary:	gnome-vfs2 - vfolder based GNOME menu
 Summary(pl):	gnome-vfs2 - menu GNOME przy u¿yciu vfolder
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 Provides:	gnome-vfs-menu-module = 1.0-1
 Obsoletes:	gnome-vfs2-module-menu
-Requires:	%{name} = %{version}-%{release}
 
 %description vfolder-menu
 Vfolder based GNOME menu.
@@ -102,11 +110,7 @@ Menu GNOME przy u¿yciu vfolder.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p0
-
-mv po/{no,nb}.po
+%patch4 -p0
 
 %build
 %{__libtoolize}
@@ -117,7 +121,12 @@ mv po/{no,nb}.po
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
-	--enable-ipv6
+	--enable-ipv6 \
+%if %{with hal}
+	--enable-hal
+%else
+	--disable-hal
+%endif
 
 %{__make}
 
@@ -145,6 +154,8 @@ rm -f default-modules.conf.tmp
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+
 %find_lang gnome-vfs-2.0
 
 %clean
@@ -160,15 +171,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
-%{_sysconfdir}/gconf/schemas/*
 %exclude %{_sysconfdir}/gnome-vfs-2.0/modules/menu.conf
+%{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
-%attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
 
