@@ -7,18 +7,18 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org:/pub/GNOME2/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel
-BuildRequires:	ORBit2-devel
+BuildRequires:	GConf2-devel >= 1.1.10
+BuildRequires:	ORBit2-devel >= 2.3.108
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel
+BuildRequires:	bonobo-activation-devel >= 0.9.8
 BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel
-BuildRequires:	gnome-mime-data-devel
-BuildRequires:	libbonobo-devel
-BuildRequires:	libtool
+BuildRequires:	glib2-devel >= 2.0.2
+BuildRequires:	gnome-mime-data-devel >= 1.0.8
+BuildRequires:	libbonobo-devel >= 0.116.0
+BuildRequires:	libtool >= 1.4.2-10
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
