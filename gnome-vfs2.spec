@@ -93,18 +93,18 @@ This package contains static gnome-vfs2 libraries.
 Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %package vfolder-menu
-Summary:	gnome-vfs2 - vfolder based gnome menu
-Summary(pl):	gnome-vfs2 - menu gnome przy u퓓ciu vfolder
+Summary:	gnome-vfs2 - vfolder based GNOME menu
+Summary(pl):	gnome-vfs2 - menu GNOME przy u퓓ciu vfolder
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	gnome-vfs-menu-module
 Obsoletes:	gnome-vfs2-module-menu
 
 %description vfolder-menu
-Vfolder based gnome menu.
+Vfolder based GNOME menu.
 
 %description vfolder-menu -l pl
-Menu gnome przy u퓓ciu vfolder.
+Menu GNOME przy u퓓ciu vfolder.
 
 %prep
 %setup -q -n gnome-vfs-%{version}
