@@ -1,3 +1,10 @@
+#
+# Conditional build:
+%bcond_without gtk	# don't build the gtkfilechooser module, which
+                    # requires gtk+2-devel and libgnomeui-devel.
+                    # It's necessary to build GNOME from scratch, because
+                    # libgnomeui requires gnome-vfs2 to build.
+#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
@@ -28,7 +35,7 @@ BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.5.1
-BuildRequires:	libgnomeui-devel >= 2.5.1
+%{?with_gtk:BuildRequires:	libgnomeui-devel >= 2.5.1}
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
@@ -96,7 +103,8 @@ gtkdocize --copy
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
-	--enable-ipv6
+	--enable-ipv6 \
+	--with-gtk=%{?with_gtk:yes}%{!?with_gtk:no}
 
 %{__make}
 
@@ -131,8 +139,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
+%if %{with gtk}
 %dir %{_libdir}/gtk-2.0/2.2.0/filesystems
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.so
+%endif
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
