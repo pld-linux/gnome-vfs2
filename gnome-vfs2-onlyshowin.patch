@@ -1,7 +1,7 @@
 diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c
 --- gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c	2003-09-27 17:42:52.000000000 +0200
-+++ gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c	2003-12-14 18:44:16.918460112 +0100
-@@ -201,7 +201,7 @@
++++ gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c	2003-12-14 18:52:30.369444160 +0100
+@@ -201,13 +201,33 @@
  entry_reload_if_needed (Entry *entry)
  {
  	gboolean changed = FALSE;
@@ -10,11 +10,9 @@ diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.
  	int i;
  
  	if (!entry->dirty)
-@@ -213,6 +213,25 @@
- 			       "Deprecates",
- 			       &deprecates);
+ 		return;
  
-+	entry_quick_read_keys (entry, 
+ 	entry_quick_read_keys (entry, 
 +			       "OnlyShowIn",
 +			       &onlyshowin,
 +			       NULL,
@@ -33,6 +31,8 @@ diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.
 +		g_free (onlyshowin);
 +		if (!show) return;
 +	}
- 	/* 
- 	 * Clear keywords from file, leaving only ones added from 
- 	 * the directory.
++
++	entry_quick_read_keys (entry, 
+ 			       "Categories",
+ 			       &keywords,
+ 			       "Deprecates",
