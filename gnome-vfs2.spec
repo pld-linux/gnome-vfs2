@@ -49,6 +49,7 @@ BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
+Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module
 %{?with_hal:Requires:	hal >= 0.2.92}
 Requires:	libbonobo >= 2.6.1
