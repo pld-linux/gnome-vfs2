@@ -1,10 +1,11 @@
---- gnome-vfs-1.9.17/modules/applications.vfolder-info.in.wiget	Mon Jun 10 14:42:49 2002
-+++ gnome-vfs-1.9.17/modules/applications.vfolder-info.in	Mon Jun 10 14:43:32 2002
-@@ -5,6 +5,7 @@
- 
-   <!-- Merges in the main GNOME menus if you build into a non-default prefix -->
+diff -urN gnome-vfs-2.0.3.orig/modules/vfolder/applications-all-users.vfolder-info.in gnome-vfs-2.0.3/modules/vfolder/applications-all-users.vfolder-info.in
+--- gnome-vfs-2.0.3.orig/modules/vfolder/applications-all-users.vfolder-info.in	Thu Aug 29 13:19:36 2002
++++ gnome-vfs-2.0.3/modules/vfolder/applications-all-users.vfolder-info.in	Thu Aug 29 13:21:53 2002
+@@ -17,6 +17,7 @@
+   <!-- Merge in the GNOME1 menus if you build into a non-default prefix -->
+   <MergeDir>@datadir@/gnome/apps/</MergeDir>
    <MergeDir>/usr/share/gnome/apps/</MergeDir>
 +  <MergeDir>/usr/X11R6/share/applnk/</MergeDir>
  
-   <!-- Control Center Merge Directories -->
-   <MergeDir>@datadir@/control-center-2.0/capplets/</MergeDir>
+   <!-- Merge dirs optional -->
+   <MergeDir>/etc/X11/applnk/</MergeDir>
