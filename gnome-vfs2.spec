@@ -9,7 +9,7 @@ Version:	2.10.0
 Release:	6
 License:	LGPL
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
 # Source0-md5:	bb9df65d6a77414bbde9f1bc429c9d97
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-defaults-path.patch
