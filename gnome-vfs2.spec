@@ -27,7 +27,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 BuildRequires:	intltool
@@ -47,7 +47,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	GConf2-devel >= 2.3.3
 Requires:	gtk-doc-common
-Requires:	openssl-devel >= 0.9.7
+Requires:	openssl-devel >= 0.9.7c
 
 %description devel
 This package contains header files for gnome-vfs2 library.
