@@ -1,0 +1,12 @@
+diff -urN aa/gnome-vfs-2.7.3/modules/default-modules.conf gnome-vfs-2.7.3/modules/default-modules.conf
+--- aa/gnome-vfs-2.7.3/modules/default-modules.conf	2004-06-16 09:36:48.000000000 +0200
++++ gnome-vfs-2.7.3/modules/default-modules.conf	2004-07-21 20:17:31.829634912 +0200
+@@ -44,7 +44,7 @@
+ a ar arj cpio deb hp48 lha mailfs patchfs rar rpm rpms trpm zip zoo: extfs
+ 
+ # vfolder desktop method
+-applications:           vfolder-desktop
++applications:           menu
+ applications-all-users: vfolder-desktop
+ all-applications:       vfolder-desktop
+ preferences:            vfolder-desktop
