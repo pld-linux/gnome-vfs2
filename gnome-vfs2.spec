@@ -19,6 +19,7 @@ BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.3
+BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.3.1
 BuildRequires:	gtk-doc >= 1.1
