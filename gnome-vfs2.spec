@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.0.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
@@ -14,7 +14,7 @@ BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 1.0.3
+BuildRequires:	bonobo-activation-devel >= 2.1.0
 BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 # install stage fails with docbook-dtd412-xml-1.0-8
@@ -30,6 +30,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
+Requires:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
