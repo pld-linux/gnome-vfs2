@@ -1,39 +1,45 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.4.2
+Version:	2.6.0
 Release:	1
 License:	GPL
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.4/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	a0f0e40739214143bbf3050311ff10cd
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.6/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	4d0323cf015dd006210fcacd4bfe7420
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
-Patch2:		%{name}-capplets-dir.patch
-Patch3:		%{name}-onlyshowin.patch
+Patch2:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.8.0
+BuildRequires:	GConf2-devel >= 2.5.90
+BuildRequires:	ORBit2-devel >= 1:2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.3
-BuildRequires:	gnome-common >= 2.3.0
+BuildRequires:	glib2-devel >= 2.3.6
+BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.3.1
+BuildRequires:	gnome-mime-data-devel >= 2.4.1
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	intltool >= 0.30
+BuildRequires:	libbonobo-devel >= 2.6.0
+BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	perl-base
+BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-BuildRequires:	intltool
-Requires:	libbonobo >= 2.4.0
+Requires:	libbonobo >= 2.6.0
+Requires:	shared-mime-info >= 0.13
+Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,10 +53,10 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.3.3
+Requires:	GConf2-devel >= 2.5.90
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.4.0
-Requires:	openssl-devel >= 0.9.7c
+Requires:	libbonobo-devel >= 2.6.0
+Requires:	openssl-devel >= 0.9.7d
 
 %description devel
 This package contains header files for gnome-vfs2 library.
@@ -75,7 +81,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+
+mv po/{no,nb}.po
 
 %build
 %{__libtoolize}
@@ -84,7 +91,9 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %{__automake}
 %configure \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	--disable-schemas-install \
+	--enable-ipv6
 
 %{__make}
 
@@ -93,10 +102,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4dir=%{_aclocaldir}
+	m4dir=%{_aclocaldir} \
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-# no static gnomevfs or bonobo modules and *.la for them
+# no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 %find_lang gnome-vfs-2.0
 
@@ -115,6 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gnome-vfs-2.0
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/gnomevfs-*
+%attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
