@@ -1,16 +1,16 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.3.8
+Version:	2.3.90
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.3/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	e7a1c2c1228099020a0ae2f99d4cb143
+# Source0-md5:	36d5e527e831e2f055ad25b238faddd7
 Patch0:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.7.6
+BuildRequires:	ORBit2-devel >= 2.8.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -18,18 +18,18 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.2.2
+BuildRequires:	glib2-devel >= 2.2.3
 BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.3.1
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	libbonobo-devel >= 2.3.6
+BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-Requires:	libbonobo >= 2.3.6
+Requires:	libbonobo >= 2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
