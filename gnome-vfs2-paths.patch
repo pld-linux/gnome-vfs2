@@ -1,6 +1,54 @@
+diff -urN aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-application-registry.c gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-application-registry.c
+--- aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-application-registry.c	Thu Sep 19 13:54:57 2002
++++ gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-application-registry.c	Sun Dec  1 22:58:54 2002
+@@ -958,7 +958,7 @@
+ 	 * Setup the descriptors for the information loading
+ 	 */
+ 
+-	gnome_registry_dir.dirname = g_strdup (DATADIR "/application-registry");
++	gnome_registry_dir.dirname = g_strdup ("/usr/X11R6/share/application-registry");
+ 	gnome_registry_dir.system_dir = TRUE;
+ 	
+ 	user_registry_dir.dirname = g_strconcat (g_get_home_dir(), "/.gnome/application-info", NULL);
+diff -urN aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-info.c gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-info.c
+--- aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-info.c	Mon Aug  5 15:08:27 2002
++++ gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-info.c	Sun Dec  1 22:59:05 2002
+@@ -659,7 +659,7 @@
+ 	/*
+ 	 * Setup the descriptors for the information loading
+ 	 */
+-	gnome_mime_dir.dirname = g_strdup (DATADIR "/mime-info");
++	gnome_mime_dir.dirname = g_strdup ("/usr/X11R6/share/mime-info");
+ 	gnome_mime_dir.system_dir = TRUE;
+ 
+ 	user_mime_dir.dirname  = g_strconcat
+diff -urN aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-monitor.c gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-monitor.c
+--- aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-monitor.c	Mon Jun 17 09:34:42 2002
++++ gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime-monitor.c	Sun Dec  1 22:59:21 2002
+@@ -104,7 +104,7 @@
+ 	monitor->priv->local_callback_data->type = LOCAL_MIME_DIR;
+ 	monitor->priv->local_callback_data->monitor = monitor;
+ 
+-	mime_dir = g_strdup (DATADIR "/mime-info");
++	mime_dir = g_strdup ("/usr/X11R6/share/mime-info");
+ 	gnome_vfs_monitor_add (&monitor->priv->global_handle,
+ 			       mime_dir,
+ 			       GNOME_VFS_MONITOR_DIRECTORY,
+diff -urN aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime.c gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime.c
+--- aaa/gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime.c	Wed Nov  6 20:20:33 2002
++++ gnome-vfs-2.1.3.1/libgnomevfs/gnome-vfs-mime.c	Sun Dec  1 22:59:31 2002
+@@ -360,7 +360,7 @@
+ 
+ 	mime_data_date_tracker = gnome_vfs_file_date_tracker_new ();
+ 	
+-	gnome_mime_dir.dirname = g_strdup (DATADIR "/mime-info");
++	gnome_mime_dir.dirname = g_strdup ("/usr/X11R6/share/mime-info");
+ 	gnome_mime_dir.system_dir = TRUE;
+ 
+ 	user_mime_dir.dirname = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
 diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in
 --- aaa/gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in	Fri Oct 25 13:29:14 2002
-+++ gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in	Sat Nov 30 21:54:55 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in	Sun Dec  1 23:00:24 2002
 @@ -7,9 +7,11 @@
  
    <!-- Add main GNOME2 entries if you build into a non-default prefix -->
@@ -15,7 +63,7 @@ diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-i
    <MergeDir>/usr/share/gnome/ximian/Programs/</MergeDir>
 diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in
 --- aaa/gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in	Thu Oct 31 22:13:18 2002
-+++ gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in	Sat Nov 30 21:54:14 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in	Sun Dec  1 23:00:24 2002
 @@ -5,6 +5,7 @@
    <!-- Root folder -->
    <Folder>
@@ -26,7 +74,7 @@ diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in gnome-vf
        <Not>
 diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in
 --- aaa/gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in	Fri Aug 30 04:31:08 2002
-+++ gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in	Sat Nov 30 21:54:26 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in	Sun Dec  1 23:00:24 2002
 @@ -4,12 +4,14 @@
  
    <!-- Capplet location for our prefix -->
