@@ -1,0 +1,48 @@
+diff -Nuard gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c
+--- gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c	2003-10-17 17:11:22.000000000 +0200
++++ gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c	2004-04-18 12:51:47.074282208 +0200
+@@ -253,11 +253,11 @@
+ 	return -1;
+ }
+ 
+-
+ static void
+ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
+ {
+ 	int lang_level;
++	gchar *prevtmp = NULL;
+ 
+ 	lang_level = language_level (lang);
+ 	/* wrong language completely */
+@@ -270,9 +270,28 @@
+ 		return;
+ 	}
+ 
+-	/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level);*/
+-
+-	g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
++	prevtmp = (gchar *)g_hash_table_lookup(context->keys,key);
++	
++	if ((prevtmp != NULL) && (value != NULL) && (key != NULL) && (strstr(key,"_list_") != NULL)) {
++		gint i = 0;
++		GList *vallist = NULL;
++		gchar **strv = g_strsplit ((prevtmp == NULL ? "" : prevtmp), ",", 0);
++		
++		for (i = 0; strv[i] != NULL; i++) {
++			vallist = g_list_prepend (vallist, strv[i]);
++		}
++		
++		/* remove repeated entries */
++		if (!g_list_find_custom(vallist,value,(GCompareFunc)strcmp)) {
++		    g_hash_table_replace (context->keys, g_strdup (key), g_strconcat(prevtmp,",",value,NULL));
++		}
++		
++		g_list_free(vallist);
++		g_strfreev(strv);
++		
++	} else {
++		g_hash_table_replace (context->keys, g_strdup (key), g_strdup(value));
++	}
+ 
+ 	previous_key_lang_level = lang_level;
+ }
