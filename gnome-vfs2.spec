@@ -1,15 +1,16 @@
 #
 # Conditional build:
 %bcond_without	hal	# don't use hal
+#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.7.4
+Version:	2.7.5
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.7/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	9c51234cfe5d6faf51fe1b5784219d01
+# Source0-md5:	39a5ac39d93386578ecf3201ce79828f
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
@@ -17,7 +18,6 @@ Patch3:		%{name}-onlyshowin.patch
 Patch4:		%{name}-capplets-dir.patch
 Patch5:		%{name}-gnome2-dir.patch
 Patch6:		%{name}-modules_conf.patch
-Patch7:		%{name}-hal.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.3
 BuildRequires:	ORBit2-devel >= 1:2.11.1
@@ -99,7 +99,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch4 -p1
 %patch5 -p0
 %patch6 -p1
-%{?with_hal:%patch7 -p1}
 
 mv po/{no,nb}.po
 
