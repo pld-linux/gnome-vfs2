@@ -1,0 +1,38 @@
+diff -Nur gnome-vfs-1.9.11/libgnomevfs/gnome-vfs-mime-handlers.c gnome-vfs-1.9.11.new/libgnomevfs/gnome-vfs-mime-handlers.c
+--- gnome-vfs-1.9.11/libgnomevfs/gnome-vfs-mime-handlers.c	Tue Jan 22 10:24:29 2002
++++ gnome-vfs-1.9.11.new/libgnomevfs/gnome-vfs-mime-handlers.c	Sat Apr 13 13:47:57 2002
+@@ -30,7 +30,7 @@
+ #include "gnome-vfs-result.h"
+ #include "gnome-vfs-utils.h"
+ #include <bonobo-activation/bonobo-activation-activate.h>
+-#include <gconf/gconf-client.h>
++#include <gconf-client.h>
+ #include <stdio.h>
+ #include <string.h>
+ 
+diff -Nur gnome-vfs-1.9.11/modules/cdda-method.c gnome-vfs-1.9.11.new/modules/cdda-method.c
+--- gnome-vfs-1.9.11/modules/cdda-method.c	Fri Nov  2 12:15:50 2001
++++ gnome-vfs-1.9.11.new/modules/cdda-method.c	Sat Apr 13 13:46:40 2002
+@@ -26,8 +26,8 @@
+ 
+ #include "cdda-cddb.h"
+ #include <errno.h>
+-#include <gconf/gconf-client.h>
+-#include <gconf/gconf.h>
++#include <gconf-client.h>
++#include <gconf.h>
+ #include <libgnomevfs/gnome-vfs-cancellation.h>
+ #include <libgnomevfs/gnome-vfs-context.h>
+ #include <libgnomevfs/gnome-vfs-method.h>
+diff -Nur gnome-vfs-1.9.11/modules/http-method.c gnome-vfs-1.9.11.new/modules/http-method.c
+--- gnome-vfs-1.9.11/modules/http-method.c	Mon Jan  7 08:25:16 2002
++++ gnome-vfs-1.9.11.new/modules/http-method.c	Sat Apr 13 13:49:30 2002
+@@ -41,7 +41,7 @@
+ /* Keep <netinet/in.h> above <arpa/inet.h> for FreeBSD. */
+ #include <netinet/in.h>
+ #include <arpa/inet.h>
+-#include <gconf/gconf-client.h>
++#include <gconf-client.h>
+ #include <libgnomevfs/gnome-vfs-inet-connection.h>
+ #include <libgnomevfs/gnome-vfs-mime-sniff-buffer.h>
+ #include <libgnomevfs/gnome-vfs-mime.h>
