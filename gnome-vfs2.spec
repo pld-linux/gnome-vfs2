@@ -11,7 +11,7 @@ Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 2.9.0
+BuildRequires:	ORBit2-devel >= 1:2.9.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
