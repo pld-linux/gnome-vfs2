@@ -16,6 +16,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 1.0.3
 BuildRequires:	bzip2-devel
+BuildRequires:  docbook-dtd412-xml >= 1.0-10 
+# install stage fails with docbook-dtd412-xml-1.0-8
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
@@ -29,6 +31,7 @@ BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
