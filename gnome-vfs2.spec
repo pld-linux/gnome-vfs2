@@ -4,7 +4,7 @@ Name:		gnome-vfs2
 Version:	2.1.3.1
 Release:	2.1
 License:	GPL
-Group:		X11/Applications
+Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.1/gnome-vfs-%{version}.tar.bz2
 Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
@@ -48,7 +48,7 @@ Biblioteka Wirtualnego Systemu Plików GNOME2.
 %package devel
 Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	GConf2-devel
 Requires:	gtk-doc-common
@@ -63,7 +63,7 @@ Pakiet ten zawiera pliki nag³ówkowe biblioteki gnome-vfs2.
 %package static
 Summary:	gnome-vfs2 - static libraries
 Summary(pl):	gnome-vfs2 - biblioteki statyczne
-Group:		X11/Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
