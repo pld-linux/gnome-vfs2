@@ -5,7 +5,7 @@ Version:	1.9.15
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.gnome.org:/pub/GNOME2/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
+Source0:	ftp://ftp.gnome.org:/pub/GNOME/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 1.1.10
 BuildRequires:	ORBit2-devel >= 2.3.108
