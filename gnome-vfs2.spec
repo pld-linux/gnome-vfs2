@@ -50,7 +50,9 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	GConf2-devel
 Requires:	gtk-doc-common
+Requires:	openssl-devel
 
 %description devel
 This package contains header files for gnome-vfs2 library.
