@@ -1,16 +1,16 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.5.3
+Version:	2.5.4.1
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	16b71933965a21c711c9a988b07420d3
+# Source0-md5:	cbad0157be2b0f253e53a810b36dcc7f
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.3.3
+BuildRequires:	GConf2-devel >= 2.5.1
 BuildRequires:	ORBit2-devel >= 1:2.9.2
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -21,9 +21,9 @@ BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.3.1
-BuildRequires:	gnome-common >= 2.3.0
+BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.3.1
+BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.5.1
@@ -48,7 +48,7 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	GConf2-devel >= 2.3.3
+Requires:	GConf2-devel >= 2.5.1
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.7c
 
@@ -79,6 +79,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 rm -f missing
 glib-gettextize --force
 intltoolize --force
+gtkdocize --copy
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
