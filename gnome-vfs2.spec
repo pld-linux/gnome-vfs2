@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.6.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.6/gnome-vfs-%{version}.tar.bz2
@@ -43,7 +43,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	libbonobo >= 2.6.0
 Requires:	shared-mime-info >= 0.14-2
-Requires:	gnome-vfs-menu-module
+Requires:	gnome-vfs-menu-module >= 1.0-1
 Obsoletes:	gnome-vfs-extras
 Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,7 +86,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 Summary:	gnome-vfs2 - vfolder based GNOME menu
 Summary(pl):	gnome-vfs2 - menu GNOME przy u¿yciu vfolder
 Group:		Development/Libraries
-Provides:	gnome-vfs-menu-module
+Provides:	gnome-vfs-menu-module = 1.0-1
 Obsoletes:	gnome-vfs2-module-menu
 Requires:	%{name} = %{version}-%{release}
 
@@ -129,6 +129,18 @@ rm -rf $RPM_BUILD_ROOT
 	m4dir=%{_aclocaldir} \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
+cp 	$RPM_BUILD_ROOT%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf \
+	default-modules.conf.tmp 
+# only menu	
+grep -E '(applications:|all-applications:|applications-all-users:)' \
+	default-modules.conf.tmp \
+	> $RPM_BUILD_ROOT%{_sysconfdir}/gnome-vfs-2.0/modules/menu.conf 
+# all but menu	
+grep -Ev '(applications:|all-applications:|applications-all-users:)' \
+	default-modules.conf.tmp \
+	> $RPM_BUILD_ROOT%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf 
+rm -f default-modules.conf.tmp 
+
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
@@ -149,7 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
 %{_sysconfdir}/gconf/schemas/*
-%exclude %{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
+%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
@@ -176,4 +188,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files vfolder-menu
 %defattr(644,root,root,755)
-%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
+%{_sysconfdir}/gnome-vfs-2.0/modules/menu.conf
