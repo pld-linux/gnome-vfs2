@@ -6,11 +6,12 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.8.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.8/gnome-vfs-%{version}.tar.bz2
 # Source0-md5:	5484694e7250c80a231cfc525d924cc3
+Source1:	%{name}-defaults.list
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-onlyshowin.patch
@@ -18,6 +19,7 @@ Patch3:		%{name}-capplets-dir.patch
 Patch4:		%{name}-gnome2-dir.patch
 Patch5:		%{name}-categories.patch
 Patch6:		%{name}-hal.patch
+Patch7:		%{name}-defaults-path.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.8.0.1
 BuildRequires:	ORBit2-devel >= 1:2.12.0
@@ -118,6 +120,7 @@ Menu GNOME przy u¿yciu vfolder.
 %patch4 -p0
 %patch5 -p1
 %patch6 -p0
+%patch7 -p1
 
 %build
 %{__libtoolize}
@@ -163,6 +166,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/applications
+install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/gnome/applications/defaults.list
+
 %find_lang gnome-vfs-2.0
 
 %clean
@@ -188,6 +194,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
+%dir %{_datadir}/gnome/applications
+%{_datadir}/gnome/applications/defaults.list
 
 %files devel
 %defattr(644,root,root,755)
