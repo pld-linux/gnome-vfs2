@@ -1,0 +1,12 @@
+diff -aurN gnome-vfs-2.10.0.orig/configure.in gnome-vfs-2.10.0/configure.in
+--- gnome-vfs-2.10.0.orig/configure.in	2005-03-07 09:10:53.000000000 +0100
++++ gnome-vfs-2.10.0/configure.in	2005-04-05 19:23:52.984298056 +0200
+@@ -966,7 +966,7 @@
+ dnl End of IPv6 checks
+ dnl ==============================================================================
+ 
+-PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gobject-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0)
++PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gobject-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED)
+ LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS"
+ LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS $HOWL_LIBS $RESOLVER_LIBS"
+ AC_SUBST(LIBGNOMEVFS_CFLAGS)
