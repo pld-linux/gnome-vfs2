@@ -7,6 +7,7 @@ License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.3/gnome-vfs-%{version}.tar.bz2
 Patch0:		%{name}-applnk.patch
+Patch1:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.2.0
 BuildRequires:	ORBit2-devel >= 2.7.1
@@ -68,6 +69,11 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %prep
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
+%patch1 -p1
+
+# sr_YU is latin2, sr_YU@cyrillic is cyrillic in glibc
+mv -f po/{sr.po,sr@cyrillic.po}
+mv -f po/{sr@Latn.po,sr.po}
 
 %build
 rm -f missing
