@@ -35,9 +35,6 @@ Requires:	bonobo-activation >= 1.0.0
 Conflicts:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
@@ -52,8 +49,10 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	GConf2-devel
+Requires:	gnome-mime-data-devel
 Requires:	gtk-doc-common
+Requires:	libbonobo-devel
+Requires:	libxml2-devel
 Requires:	openssl-devel
 
 %description devel
@@ -67,6 +66,8 @@ Summary:	gnome-vfs2 - static libraries
 Summary(pl):	gnome-vfs2 - biblioteki statyczne
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
+Requires:	libbonobo-static
+Requires:	libxml2-static
 
 %description static
 This package contains static gnome-vfs2 libraries.
@@ -126,7 +127,7 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %defattr(644,root,root,755)
 %doc %{_gtkdocdir}/gnome-vfs-2.0
 %attr(755,root,root) %{_libdir}/*.so
-%attr(755,root,root) %{_libdir}/*.la
+%{_libdir}/*.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
