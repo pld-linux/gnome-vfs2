@@ -15,7 +15,7 @@ BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0-3
+BuildRequires:	bonobo-activation-devel >= 2.1.1-3
 BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 BuildRequires:	fam-devel
@@ -26,7 +26,7 @@ BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.0.1
 BuildRequires:	gtk-doc >= 0.9-6
-BuildRequires:	libbonobo-devel >= 2.1.0-3
+BuildRequires:	libbonobo-devel >= 2.1.0-4
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
@@ -34,7 +34,7 @@ BuildRequires:	zlib-devel
 Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
+%define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
