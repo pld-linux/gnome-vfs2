@@ -1,0 +1,151 @@
+Index: libgnomevfs/gnome-vfs-unix-mounts.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-unix-mounts.c,v
+retrieving revision 1.17
+diff -u -p -r1.17 gnome-vfs-unix-mounts.c
+--- libgnomevfs/gnome-vfs-unix-mounts.c	22 Sep 2004 08:38:38 -0000	1.17
++++ libgnomevfs/gnome-vfs-unix-mounts.c	15 Oct 2004 08:14:01 -0000
+@@ -235,6 +235,7 @@ gboolean
+ _gnome_vfs_get_current_unix_mounts (GList **return_list)
+ {
+ 	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+ 	struct mntent *mntent;
+ 	FILE *file;
+ 	char *read_file;
+@@ -254,11 +255,12 @@ _gnome_vfs_get_current_unix_mounts (GLis
+ 		return TRUE;
+ 	}
+ 
+-	if (sb.st_mtime == last_mtime) {
++	if (sb.st_mtime == last_mtime && sb.st_size == last_size) {
+ 		return FALSE;
+ 	}
+ 
+ 	last_mtime = sb.st_mtime;
++	last_size = sb.st_size;
+ 
+ 	file = setmntent (read_file, "r");
+ 	if (file == NULL) {
+@@ -332,6 +334,7 @@ gboolean
+ _gnome_vfs_get_current_unix_mounts (GList **return_list)
+ {
+ 	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+ 	struct mnttab mntent;
+ 	FILE *file;
+ 	char *read_file;
+@@ -350,11 +353,12 @@ _gnome_vfs_get_current_unix_mounts (GLis
+ 		return TRUE;
+ 	}
+ 
+-	if (sb.st_mtime == last_mtime) {
++	if (sb.st_mtime == last_mtime && sb.st_size == last_size) {
+ 		return FALSE;
+ 	}
+ 
+ 	last_mtime = sb.st_mtime;
++	last_size = sb.st_size;
+ 
+ 	file = setmntent (read_file, "r");
+ 	if (file == NULL) {
+@@ -526,6 +530,7 @@ gboolean
+ _gnome_vfs_get_unix_mount_table (GList **return_list)
+ {
+ 	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+ 	struct mntent *mntent;
+ 	FILE *file;
+ 	char *read_file;
+@@ -544,11 +549,12 @@ _gnome_vfs_get_unix_mount_table (GList *
+ 		return TRUE;
+ 	}
+ 
+-	if (sb.st_mtime == last_mtime) {
++	if (sb.st_mtime == last_mtime && sb.st_size == last_size) {
+ 		return FALSE;
+ 	}
+ 
+ 	last_mtime = sb.st_mtime;
++	last_size = sb.st_size;
+ 
+ 	file = setmntent (read_file, "r");
+ 	if (file == NULL) {
+@@ -613,6 +619,7 @@ gboolean
+ _gnome_vfs_get_unix_mount_table (GList **return_list)
+ {
+ 	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+ 	struct mnttab mntent;
+ 	FILE *file;
+ 	char *read_file;
+@@ -630,11 +637,12 @@ _gnome_vfs_get_unix_mount_table (GList *
+ 		return TRUE;
+ 	}
+ 
+-	if (sb.st_mtime == last_mtime) {
++	if (sb.st_mtime == last_mtime && sb.st_size == last_size) {
+ 		return FALSE;
+ 	}
+ 
+ 	last_mtime = sb.st_mtime;
++	last_size = sb.st_size;
+ 
+ 	file = setmntent (read_file, "r");
+ 	if (file == NULL) {
+@@ -801,6 +809,7 @@ gboolean
+ _gnome_vfs_get_unix_mount_table (GList **return_list)
+ {
+ 	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+ 	struct mntent *mntent;
+ 	FILE *file;
+ 	char *read_file;
+@@ -813,17 +822,17 @@ _gnome_vfs_get_unix_mount_table (GList *
+ 
+ 	*return_list = NULL;
+ 	
+-	if (last_mtime != 0) {
+-		if (stat (stat_file, &sb) < 0) {
+-			g_warning ("Unable to stat %s: %s", stat_file,
+-				   g_strerror (errno));
+-			return TRUE;
+-		}
++	if (stat (stat_file, &sb) < 0) {
++		g_warning ("Unable to stat %s: %s", stat_file,
++			   g_strerror (errno));
++		return TRUE;
++	}
+ 		
+-		if (sb.st_mtime == last_mtime) {
+-			return FALSE;
+-		}
++	if (last_mtime != 0 && fsb.st_mtime == last_mtime && fsb.st_size == last_size) {
++		return FALSE;
+ 	}
++	last_mtime = fsb.st_mtime;
++	last_size = fsb.st_size;
+ 
+ 	file = setmntent (read_file, "r");
+ 	if (file == NULL) {
+@@ -857,6 +866,7 @@ gboolean
+ _gnome_vfs_get_unix_mount_table (GList **return_list)
+ {
+     	static time_t last_mtime = 0;
++	static off_t last_size = 0;
+     	struct fstab *fstab = NULL;
+ 	char *stat_file;
+ 	struct stat fsb;
+@@ -875,10 +885,11 @@ _gnome_vfs_get_unix_mount_table (GList *
+ 		return TRUE;
+ 	}
+ 
+-	if (last_mtime != 0 && fsb.st_mtime == last_mtime) {
++	if (last_mtime != 0 && fsb.st_mtime == last_mtime && fsb.st_size == last_size) {
+ 	    	return FALSE;
+ 	}
+ 	last_mtime = fsb.st_mtime;
++	last_size = fsb.st_size;
+  
+ 	*return_list = NULL;
+ 

@@ -1,0 +1,19 @@
+Index: libgnomevfs/gnome-vfs-socket-buffer.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-socket-buffer.c,v
+retrieving revision 1.11
+diff -u -p -r1.11 gnome-vfs-socket-buffer.c
+--- libgnomevfs/gnome-vfs-socket-buffer.c	7 Jul 2004 15:04:30 -0000	1.11
++++ libgnomevfs/gnome-vfs-socket-buffer.c	13 Oct 2004 11:51:08 -0000
+@@ -412,7 +412,10 @@ flush (GnomeVFSSocketBuffer *socket_buff
+ 		if (result != GNOME_VFS_OK) {
+ 			return result;
+ 		}
+-		
++
++		memmove (output_buffer->data,
++			 output_buffer->data + bytes_written,
++			 output_buffer->byte_count - bytes_written);
+ 		output_buffer->byte_count -= bytes_written;
+ 	}
+ 
