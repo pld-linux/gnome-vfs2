@@ -5,12 +5,12 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.7.91
+Version:	2.7.92
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.7/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	a73663344a2d8eab907ac598f364c62a
+# Source0-md5:	86dd27b41245a761e1043a058553a1ff
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
@@ -18,13 +18,13 @@ Patch3:		%{name}-onlyshowin.patch
 Patch4:		%{name}-capplets-dir.patch
 Patch5:		%{name}-gnome2-dir.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.3
-BuildRequires:	ORBit2-devel >= 1:2.11.1
+BuildRequires:	GConf2-devel >= 2.7.92
+BuildRequires:	ORBit2-devel >= 1:2.11.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
-BuildRequires:	dbus-glib-devel >= 0.21
+BuildRequires:	dbus-glib-devel >= 0.22
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
@@ -35,7 +35,7 @@ BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.2.92}
+%{?with_hal:BuildRequires:	hal-devel >= 0.2.97}
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.6
 BuildRequires:	intltool >= 0.30
@@ -50,7 +50,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module
-%{?with_hal:Requires:	hal >= 0.2.92}
+%{?with_hal:Requires:	hal >= 0.2.97}
 Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
 Obsoletes:	gnome-vfs-extras
@@ -68,7 +68,7 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.7.3
+Requires:	GConf2-devel >= 2.7.92
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.6.1
 Requires:	openssl-devel >= 0.9.7d
