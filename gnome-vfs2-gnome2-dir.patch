@@ -1,0 +1,101 @@
+Index: libgnomevfs/gnome-vfs-init.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-init.c,v
+retrieving revision 1.32
+diff -u -r1.32 gnome-vfs-init.c
+--- libgnomevfs/gnome-vfs-init.c	5 Nov 2003 15:44:53 -0000	1.32
++++ libgnomevfs/gnome-vfs-init.c	24 Mar 2004 13:16:50 -0000
+@@ -59,16 +59,16 @@
+ 	gboolean retval = TRUE;
+ 	gchar *dirname;
+ 
+-	dirname = g_build_filename (g_get_home_dir (), ".gnome", NULL);
++	dirname = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
+ 
+ 	if (!g_file_test (dirname, G_FILE_TEST_EXISTS)) {
+ 		if (mkdir (dirname, S_IRWXU) != 0) {
+-			g_warning ("Unable to create ~/.gnome directory: %s",
++			g_warning ("Unable to create ~/.gnome2 directory: %s",
+ 				   g_strerror (errno));
+ 			retval = FALSE;
+ 		}
+ 	} else if (!g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
+-		g_warning ("Error: ~/.gnome must be a directory.");
++		g_warning ("Error: ~/.gnome2 must be a directory.");
+ 		retval = FALSE;
+ 	}
+ 
+Index: libgnomevfs/gnome-vfs-mime-info.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-mime-info.c,v
+retrieving revision 1.76
+diff -u -r1.76 gnome-vfs-mime-info.c
+--- libgnomevfs/gnome-vfs-mime-info.c	17 Jul 2003 22:33:27 -0000	1.76
++++ libgnomevfs/gnome-vfs-mime-info.c	24 Mar 2004 13:16:51 -0000
+@@ -122,7 +122,7 @@
+ #define DELETED_VALUE "moilegrandvizir"
+ 
+ /* These ones are used to automatically reload mime info on demand */
+-static mime_dir_source_t gnome_mime_dir, user_mime_dir;
++static mime_dir_source_t gnome_mime_dir, old_user_mime_dir, user_mime_dir;
+ static time_t last_checked;
+ 
+ /* To initialize the module automatically */
+@@ -624,13 +624,21 @@
+ {
+ 	mime_info_load (&gnome_mime_dir);
+ 	mime_info_load (&user_mime_dir);
++
+ 	mime_list_load (&gnome_mime_dir);
+ 	mime_list_load (&user_mime_dir);
++
++	if (old_user_mime_dir.dirname != NULL) {
++		mime_info_load (&old_user_mime_dir);
++		mime_list_load (&old_user_mime_dir);
++	}
+ }
+ 
+ static void
+ gnome_vfs_mime_init (void)
+ {
++	gchar *dirname;
++
+ 	/*
+ 	 * The hash tables that store the mime keys.
+ 	 */
+@@ -649,9 +657,18 @@
+ 	gnome_mime_dir.system_dir = TRUE;
+ 
+ 	user_mime_dir.dirname  = g_strconcat
+-		(g_get_home_dir (), "/.gnome/mime-info", NULL);
++		(g_get_home_dir (), "/.gnome2/mime-info", NULL);
+ 	user_mime_dir.system_dir = FALSE;
+ 
++	dirname = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
++	if (g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
++		old_user_mime_dir.dirname  = dirname;
++		old_user_mime_dir.system_dir = FALSE;	
++	} else {
++		memset (&old_user_mime_dir, 0, sizeof (old_user_mime_dir));
++		g_free (dirname);
++	}
++
+ 	/*
+ 	 * Load
+ 	 */
+Index: libgnomevfs/gnome-vfs-mime-monitor.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-mime-monitor.c,v
+retrieving revision 1.14
+diff -u -r1.14 gnome-vfs-mime-monitor.c
+--- libgnomevfs/gnome-vfs-mime-monitor.c	22 Jan 2004 12:29:10 -0000	1.14
++++ libgnomevfs/gnome-vfs-mime-monitor.c	24 Mar 2004 13:16:51 -0000
+@@ -114,7 +114,7 @@
+ 			       monitor->priv->gnome_callback_data);
+ 	g_free (mime_dir);
+ 
+-	mime_dir = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
++	mime_dir = g_strconcat (g_get_home_dir (), "/.gnome2/mime-info", NULL);
+ 	if (!g_file_test (mime_dir, G_FILE_TEST_EXISTS)) {
+ 		mkdir (mime_dir, S_IRWXU);
+ 	}
