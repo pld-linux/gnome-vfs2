@@ -1,3 +1,16 @@
+diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/applications-all-users.vfolder-info.in gnome-vfs-2.4.1/modules/vfolder/applications-all-users.vfolder-info.in
+--- gnome-vfs-2.4.1.orig/modules/vfolder/applications-all-users.vfolder-info.in	2003-09-27 17:42:52.000000000 +0200
++++ gnome-vfs-2.4.1/modules/vfolder/applications-all-users.vfolder-info.in	2003-12-14 19:34:10.216409656 +0100
+@@ -199,6 +199,9 @@
+           <Not>
+             <Keyword>Settings</Keyword>
+           </Not>
++          <Not>
++            <Keyword>KDE</Keyword>
++          </Not>
+           <Keyword>System</Keyword>
+         </And>
+       </Query>
 diff -Nuard gnome-vfs-2.4.0.orig/modules/vfolder/applications-all-users.vfolder-info.in gnome-vfs-2.4.0/modules/vfolder/applications-all-users.vfolder-info.in
 --- gnome-vfs-2.4.0.orig/modules/vfolder/applications-all-users.vfolder-info.in	2003-09-20 00:46:23.000000000 +0200
 +++ gnome-vfs-2.4.0/modules/vfolder/applications-all-users.vfolder-info.in	2003-09-20 00:54:23.000000000 +0200
