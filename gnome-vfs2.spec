@@ -36,7 +36,6 @@ BuildRequires:	zlib-devel
 Requires:	bonobo-activation >= 2.1.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
