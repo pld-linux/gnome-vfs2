@@ -1,43 +1,46 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.7.3
-Release:	1.1
+Version:	2.7.4
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.7/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	5d7d6dcf7fe1cddb45938453df21651e
+# Source0-md5:	9c51234cfe5d6faf51fe1b5784219d01
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
 Patch3:		%{name}-onlyshowin.patch
 Patch4:		%{name}-capplets-dir.patch
-Patch5:		%{name}-mime.patch
-Patch6:		%{name}-gnome2-dir.patch
-Patch7:		%{name}-modules_conf.patch
+Patch5:		%{name}-gnome2-dir.patch
+Patch6:		%{name}-modules_conf.patch
+Patch7:		%{name}-hal.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.1
-BuildRequires:	ORBit2-devel >= 1:2.10.0
+BuildRequires:	GConf2-devel >= 2.7.3
+BuildRequires:	ORBit2-devel >= 1:2.11.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
+BuildRequires:	dbus-glib-devel >= 0.21
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.4.2
+BuildRequires:	glib2-devel >= 1:2.4.4
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
-BuildRequires:	gtk+2-devel >= 2:2.4.3
+BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
+BuildRequires:	hal-devel >= 0.2.92
+BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.5
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.6.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.5.10
+BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
 BuildRequires:	popt-devel
@@ -60,7 +63,7 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.7.1
+Requires:	GConf2-devel >= 2.7.3
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.6.0
 Requires:	openssl-devel >= 0.9.7d
@@ -90,8 +93,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p0
+%patch5 -p0
+%patch6 -p1
 %patch7 -p1
 
 mv po/{no,nb}.po
@@ -105,7 +108,8 @@ mv po/{no,nb}.po
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
-	--enable-ipv6
+	--enable-ipv6 \
+	--enable-hal
 
 %{__make}
 
