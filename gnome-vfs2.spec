@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.1.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.1/gnome-vfs-%{version}.tar.bz2
@@ -14,10 +14,9 @@ BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0
+BuildRequires:	bonobo-activation-devel >= 2.1.0-3
 BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
-# install stage fails with docbook-dtd412-xml-1.0-8
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
@@ -25,16 +24,15 @@ BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.0.1
 BuildRequires:	gtk-doc >= 0.9-6
-BuildRequires:	libbonobo-devel >= 2.0.0
+BuildRequires:	libbonobo-devel >= 2.1.0-3
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
-Requires:	bonobo-activation >= 2.1.0
+Requires:	bonobo-activation >= 2.1.0-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
-%define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
@@ -104,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post   
 /sbin/ldconfig
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null
+%gconf_schema_install
 
 %postun -p /sbin/ldconfig
 
