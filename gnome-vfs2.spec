@@ -1,37 +1,39 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.5.2
+Version:	2.5.3
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	9bce94e51bd378e9a3c3d0465c07c35d
+# Source0-md5:	16b71933965a21c711c9a988b07420d3
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.3.3
-BuildRequires:	ORBit2-devel >= 1:2.9.0
+BuildRequires:	ORBit2-devel >= 1:2.9.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
+BuildRequires:	cdparanoia-III-devel
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.3.0
+BuildRequires:	glib2-devel >= 2.3.1
 BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.3.1
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	intltool
+BuildRequires:	libbonobo-devel >= 2.5.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-BuildRequires:	intltool
-Requires:	libbonobo >= 2.4.0
+Requires:	libbonobo >= 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,6 +76,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %build
 rm -f missing
+glib-gettextize --force
+intltoolize --force
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
