@@ -2,13 +2,14 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.5.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
 # Source0-md5:	cfc54da0a7364c6893eadd8c662bf7c3
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
+Patch2:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.5.1
 BuildRequires:	ORBit2-devel >= 1:2.9.2
@@ -27,9 +28,12 @@ BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.5.1
+BuildRequires:	libgnomeui-devel >= 2.5.1
+BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
@@ -48,7 +52,7 @@ Biblioteka Wirtualnego Systemu Plików GNOME2.
 Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.5.1
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.7c
@@ -63,7 +67,7 @@ Pakiet ten zawiera pliki nag³ówkowe biblioteki gnome-vfs2.
 Summary:	gnome-vfs2 - static libraries
 Summary(pl):	gnome-vfs2 - biblioteki statyczne
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains static gnome-vfs2 libraries.
@@ -75,6 +79,9 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+mv po/{no,nb}.po
 
 %build
 rm -f missing
@@ -87,7 +94,9 @@ gtkdocize --copy
 %{__automake}
 %configure \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	--disable-schemas-install \
+	--enable-ipv6
 
 %{__make}
 
@@ -96,10 +105,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4dir=%{_aclocaldir}
+	m4dir=%{_aclocaldir} \
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 %find_lang gnome-vfs-2.0
 
@@ -120,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
+%dir %{_libdir}/gtk-2.0/2.2.0/filesystems
 %attr(755,root,root) %{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.so
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
@@ -135,7 +147,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_gtkdocdir}/gnome-vfs-2.0
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
@@ -144,4 +155,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.a
