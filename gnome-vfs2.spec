@@ -5,12 +5,12 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.8.3
-Release:	3
-License:	GPL
+Version:	2.8.4
+Release:	1
+License:	LGPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.8/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	5484694e7250c80a231cfc525d924cc3
+# Source0-md5:	42d3505e9ef9c26a7aae4e511b9b4c34
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
@@ -48,6 +48,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
+BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
@@ -199,13 +200,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc %{_gtkdocdir}/gnome-vfs-2.0
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
 %{_pkgconfigdir}/*.pc
+%{_gtkdocdir}/gnome-vfs-2.0
 
 %files static
 %defattr(644,root,root,755)
