@@ -15,7 +15,7 @@ BuildRequires:	bonobo-activation-devel >= 0.9.8
 BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.0.2
+BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	gnome-mime-data-devel >= 1.0.8
 BuildRequires:	libbonobo-devel >= 0.116.0
 BuildRequires:	libtool >= 1.4.2-10
