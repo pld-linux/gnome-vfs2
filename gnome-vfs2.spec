@@ -9,7 +9,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.5.8
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
@@ -17,6 +17,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{versio
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
+Patch3:		%{name}-inc_fixes.patch
+Patch4:		%{name}-gtk.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.5.1
 BuildRequires:	ORBit2-devel >= 1:2.9.2
@@ -32,6 +34,7 @@ BuildRequires:	glib2-devel >= 2.3.1
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
+BuildRequires:	gtk+2-devel >= 2.3.5
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.5.1
@@ -87,6 +90,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 mv po/{no,nb}.po
 
