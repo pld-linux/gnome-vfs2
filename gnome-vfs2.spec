@@ -173,8 +173,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
+%exclude %{_sysconfdir}/gnome-vfs-2.0/modules/menu.conf
 %{_sysconfdir}/gconf/schemas/*
-%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
