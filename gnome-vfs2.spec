@@ -1,25 +1,25 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	1.9.11
-Release:	1
+Version:	1.9.12
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org:/pub/GNOME2/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 1.1
-BuildRequires:	ORBit2-devel >= 2.3.90
+BuildRequires:	GConf2-devel
+BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 0.9.1
+BuildRequires:	bonobo-activation-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1.3.9
+BuildRequires:	glib2-devel
 BuildRequires:	gnome-mime-data-devel
-BuildRequires:	libbonobo-devel >= 1.97.9
+BuildRequires:	libbonobo-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.2.8
+BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,6 +62,11 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %setup -q -n gnome-vfs-%{version}
 
 %build
+#rm -f missing acinclude.m4
+#libtoolize --copy --force
+#aclocal
+autoconf
+#automake -a -c -f
 %configure \
 	--disable-gtk-doc
 %{__make}
