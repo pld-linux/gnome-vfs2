@@ -1,3 +1,6 @@
+#
+# Conditional build:
+%bcond_without	hal	# don't use hal
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
@@ -33,7 +36,7 @@ BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	hal-devel >= 0.2.92
+%{?with_hal:BuildRequires:	hal-devel >= 0.2.92}
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.5
 BuildRequires:	intltool >= 0.30
@@ -46,7 +49,7 @@ BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-Requires:	hal >= 0.2.92
+%{?with_hal:Requires:	hal >= 0.2.92}
 Requires:	libbonobo >= 2.6.0
 Requires:	shared-mime-info >= 0.14
 Obsoletes:	gnome-vfs-extras
@@ -96,7 +99,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch4 -p1
 %patch5 -p0
 %patch6 -p1
-%patch7 -p1
+%{?with_hal:%patch7 -p1}
 
 mv po/{no,nb}.po
 
@@ -110,7 +113,11 @@ mv po/{no,nb}.po
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
 	--enable-ipv6 \
+%if %{with hal}
 	--enable-hal
+%else
+	--disable-hal
+%endif
 
 %{__make}
 
