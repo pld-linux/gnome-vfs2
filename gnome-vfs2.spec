@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.1.3.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.1/gnome-vfs-%{version}.tar.bz2
@@ -10,6 +10,7 @@ Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 Patch2:		%{name}-applnk.patch
 Patch3:		%{name}-am.patch
+Patch4:		%{name}-paths.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	ORBit2-devel >= 2.4.3
@@ -24,17 +25,16 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.0.1
+BuildRequires:	gnome-mime-data-devel >= 2.0.1-3
 BuildRequires:	gtk-doc >= 0.9-6
 BuildRequires:	libbonobo-devel >= 2.1.0-4
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
-Requires:	bonobo-activation >= 2.1.0-3
+Requires:	bonobo-activation >= 2.1.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
@@ -77,6 +77,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing
