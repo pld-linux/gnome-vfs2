@@ -1,0 +1,44 @@
+diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in
+--- aaa/gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in	Fri Oct 25 13:29:14 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/applications-all-users.vfolder-info.in	Sat Nov 30 21:54:55 2002
+@@ -7,9 +7,11 @@
+ 
+   <!-- Add main GNOME2 entries if you build into a non-default prefix -->
+   <ItemDir>/usr/share/applications/</ItemDir>
++  <ItemDir>/usr/X11R6/share/applications/</ItemDir>
+ 
+   <!-- Default .directory location -->
+   <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
++  <DesktopDir>/usr/X11R6/share/gnome/vfolders/</DesktopDir>
+ 
+   <!-- Add Ximian Menu Entries, uncomment for menu nirvana -->
+   <MergeDir>/usr/share/gnome/ximian/Programs/</MergeDir>
+diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in
+--- aaa/gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in	Thu Oct 31 22:13:18 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/network.vfolder-info.in	Sat Nov 30 21:54:14 2002
+@@ -5,6 +5,7 @@
+   <!-- Root folder -->
+   <Folder>
+     <Parent>@datadir@/gnome/network/</Parent>
++    <Parent>/usr/X11R6/share/gnome/network/</Parent>
+     <Name>Network Shares</Name>
+     <Query>
+       <Not>
+diff -urN aaa/gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in
+--- aaa/gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in	Fri Aug 30 04:31:08 2002
++++ gnome-vfs-2.1.3.1/modules/vfolder/preferences-all-users.vfolder-info.in	Sat Nov 30 21:54:26 2002
+@@ -4,12 +4,14 @@
+ 
+   <!-- Capplet location for our prefix -->
+   <ItemDir>@datadir@/control-center-2.0/capplets/</ItemDir>
++  <ItemDir>/usr/X11R6/share/control-center-2.0/capplets/</ItemDir>
+ 
+   <!-- Merge dirs optional -->
+   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
+   <MergeDir>@datadir@/gnome/capplets</MergeDir>
+ 
+   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
++  <DesktopDir>/usr/X11R6/share/gnome/vfolders</DesktopDir>
+ 
+   <!-- Settings -->
+   <Folder>
