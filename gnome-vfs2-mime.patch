@@ -1,35 +1,71 @@
 diff -Nuard gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c
 --- gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c	2003-10-17 17:11:22.000000000 +0200
-+++ gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c	2004-04-17 20:34:28.000000000 +0200
-@@ -258,6 +258,8 @@
++++ gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c	2004-04-18 12:02:05.000000000 +0200
+@@ -253,11 +253,35 @@
+ 	return -1;
+ }
+ 
++/*
++static GList *
++strsplit_to_list (const char *str, const char *delim, int max)
++{
++	char **strv;
++	GList *retval;
++	int i;
++
++	strv = g_strsplit ((str == NULL ? "" : str), delim, max)
++
++	retval = NULL;
++
++	for (i = 0; strv[i] != NULL; i++) {
++		retval = g_list_prepend (retval, strv[i]);
++	}
++
++	retval = g_list_reverse (retval);
++	
++	g_free (strv);
++
++	return retval;
++}
++*/
+ 
+ static void
  context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
  {
  	int lang_level;
-+	gpointer prevtmp = NULL;
-+	gchar *newval = NULL;
++	gchar *prevtmp = NULL;
  
  	lang_level = language_level (lang);
  	/* wrong language completely */
-@@ -270,9 +272,19 @@
+@@ -270,9 +294,28 @@
  		return;
  	}
  
 -	/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level);*/
 -
 -	g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
-+/*	g_print ("Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level); */
++	prevtmp = (gchar *)g_hash_table_lookup(context->keys,key);
 +	
-+	prevtmp = g_hash_table_lookup(context->keys,g_strdup (key));
-+	
-+	if ((prevtmp != NULL) && (strstr(key,"list_application_ids") != NULL) && (strstr(prevtmp,value) == NULL)) {
-+		newval = g_strconcat(prevtmp,",",value,NULL);
++	if ((prevtmp != NULL) && (value != NULL) && (key != NULL) && (strstr(key,"_list_") != NULL)) {
++		gint i = 0;
++		GList *vallist = NULL;
++		gchar **strv = g_strsplit ((prevtmp == NULL ? "" : prevtmp), ",", 0);
++		
++		for (i = 0; strv[i] != NULL; i++) {
++			vallist = g_list_prepend (vallist, strv[i]);
++		}
++		
++		/* remove repeated entries */
++		if (!g_list_find_custom(vallist,value,(GCompareFunc)strcmp)) {
++		    g_hash_table_replace (context->keys, g_strdup (key), g_strconcat(prevtmp,",",value,NULL));
++		}
++		
++		g_list_free(vallist);
++		g_strfreev(strv);
++		
 +	} else {
-+		newval = g_strdup(value);
++		g_hash_table_replace (context->keys, g_strdup (key), g_strdup(value));
 +	}
-+	
-+/*	g_print("%s %s\n",key,newval); */
-+	
-+	g_hash_table_replace (context->keys, g_strdup (key), newval);
  
  	previous_key_lang_level = lang_level;
  }
