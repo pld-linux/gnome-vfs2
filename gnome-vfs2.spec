@@ -6,7 +6,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.10.0
-Release:	5.1
+Release:	6
 License:	LGPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
@@ -44,8 +44,9 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpmbuild(macros) >= 1.196
 BuildRequires:	zlib-devel
-Requires(post,pre):	GConf2
+Requires(post,preun):	GConf2
 %{?with_hal:Requires:	hal-libs >= 0.4.7}
 Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.8.1
@@ -143,8 +144,6 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install /etc/gconf/schemas/system_http_proxy.schemas
 %gconf_schema_install /etc/gconf/schemas/system_smb.schemas
 
-%postun -p /sbin/ldconfig
-
 %preun
 if [ $1 = 0 ]; then
 	%gconf_schema_uninstall /etc/gconf/schemas/desktop_default_applications.schemas
@@ -152,6 +151,11 @@ if [ $1 = 0 ]; then
 	%gconf_schema_uninstall /etc/gconf/schemas/system_dns_sd.schemas
 	%gconf_schema_uninstall /etc/gconf/schemas/system_http_proxy.schemas
 	%gconf_schema_uninstall /etc/gconf/schemas/system_smb.schemas
+fi
+
+%postun
+if [ $1 = 0 ]; then
+	/sbin/ldconfig
 fi
 
 %files -f gnome-vfs-2.0.lang
