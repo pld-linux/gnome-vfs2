@@ -94,7 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} 
+
+mv $RPM_BUILD_ROOT/usr/{X11R6/share/aclocal,share/aclocal}
 
 %find_lang gnome-vfs-2.0
 
@@ -129,6 +131,7 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" /usr/X11R6/b
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
 %{_pkgconfigdir}/*.pc
+%{_aclocaldir}/*
 
 %files static
 %defattr(644,root,root,755)
