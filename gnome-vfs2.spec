@@ -50,6 +50,7 @@ BuildRequires:	zlib-devel
 Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module >= 1.0-1
 %{?with_hal:Requires:	hal >= 0.2.97}
+Requires:	howl-libs >= 0.9.6-2
 Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
 Obsoletes:	gnome-vfs-extras
@@ -69,6 +70,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.7.92
 Requires:	gtk-doc-common
+Requires:	howl-libs-devel >= 0.9.6-2
 Requires:	libbonobo-devel >= 2.6.1
 Requires:	openssl-devel >= 0.9.7d
 
