@@ -1,12 +1,12 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.5.7
+Version:	2.5.8
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	c25084af618d080d49ea0db58022fc56
+# Source0-md5:	cfc54da0a7364c6893eadd8c662bf7c3
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 URL:		http://www.gnome.org/
@@ -120,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.so
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
@@ -134,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_gtkdocdir}/gnome-vfs-2.0
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
+%{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
@@ -142,3 +144,4 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.a
