@@ -1,7 +1,7 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	1.9.17
+Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -10,7 +10,7 @@ Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 Patch2:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 1.1.11
+BuildRequires:	GConf2-devel >= 1.2.0
 BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -19,11 +19,11 @@ BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.3
-BuildRequires:	gnome-mime-data-devel >= 1.0.8
+BuildRequires:	gnome-mime-data-devel >= 2.0.0
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel
-BuildRequires:	openssl-devel
+BuildRequires:	libxml2-devel >= 2.4.22
+BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
 BuildRequires:	gnome-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
