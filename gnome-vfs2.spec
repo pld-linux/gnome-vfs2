@@ -36,7 +36,7 @@ BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.2.98-4}
+%{?with_hal:BuildRequires:	hal-devel >= 0.4.0}
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.6-2
 BuildRequires:	intltool >= 0.30
@@ -51,7 +51,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module >= 1.0-1
-%{?with_hal:Requires:	hal-libs >= 0.2.98-4}
+%{?with_hal:Requires:	hal-libs >= 0.4.0}
 Requires:	howl-libs >= 0.9.6-2
 Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
