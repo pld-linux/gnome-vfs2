@@ -74,7 +74,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal -I %{_aclocaldir}/gnome2-macros
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
 %configure \
