@@ -1,0 +1,14 @@
+--- gnome-vfs-2.8.2/modules/vfolder/applications-all-users.vfolder-info.in.orig	2004-10-14 09:52:38.632397864 +0200
++++ gnome-vfs-2.8.2/modules/vfolder/applications-all-users.vfolder-info.in	2004-10-14 10:01:59.999057160 +0200
+@@ -147,7 +147,10 @@
+       <Desktop>Multimedia.directory</Desktop>
+       <Query>
+         <And>
+-	  <Keyword>AudioVideo</Keyword>
++	  <Or>
++	    <Keyword>AudioVideo</Keyword>
++	    <Keyword>Audio</Keyword>
++	  </Or>
+         </And>
+       </Query>
+ 
