@@ -10,29 +10,22 @@ Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 Patch2:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 1.2.1
-BuildRequires:	ORBit2-devel >= 2.4.3
+BuildRequires:	GConf2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	bzip2-devel
-BuildRequires:  docbook-dtd412-xml >= 1.0-10 
+BuildRequires:	cdparanoia-III-devel
 # install stage fails with docbook-dtd412-xml-1.0-8
+BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-common
-BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.0.1
+BuildRequires:	gnome-mime-data-devel
 BuildRequires:	gtk-doc >= 0.9-6
-BuildRequires:	libbonobo-devel >= 2.0.0
+BuildRequires:	libbonobo-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.24
-BuildRequires:	openssl-devel >= 0.9.6d
+BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
-BuildConflicts:	bonobo-activation-devel >= 2.1.0
-Requires:	bonobo-activation >= 1.0.0
-Conflicts:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -51,11 +44,15 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	GConf2-devel
+Requires:	bzip2-devel
+Requires:	cdparanoia-III-devel
+Requires:	fam-devel
 Requires:	gnome-mime-data-devel
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel
-Requires:	libxml2-devel
 Requires:	openssl-devel
+Requires:	zlib-devel
 
 %description devel
 This package contains header files for gnome-vfs2 library.
@@ -68,8 +65,6 @@ Summary:	gnome-vfs2 - static libraries
 Summary(pl):	gnome-vfs2 - biblioteki statyczne
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
-Requires:	libbonobo-static
-Requires:	libxml2-static
 
 %description static
 This package contains static gnome-vfs2 libraries.
@@ -120,10 +115,12 @@ GCONF_CONFIG_SOURCE="`/usr/X11R6/bin/gconftool-2 --get-default-source`" /usr/X11
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
-%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.??
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
+%{_libdir}/gnome-vfs-2.0/modules/*.la
 %attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
-%{_libdir}/bonobo/monikers/*.??
+%attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
+%{_libdir}/bonobo/monikers/*.la
 
 %files devel
 %defattr(644,root,root,755)
