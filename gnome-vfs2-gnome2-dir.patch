@@ -25,64 +25,6 @@ diff -u -r1.32 gnome-vfs-init.c
  		retval = FALSE;
  	}
  
-Index: libgnomevfs/gnome-vfs-mime-info.c
-===================================================================
-RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-mime-info.c,v
-retrieving revision 1.76
-diff -u -r1.76 gnome-vfs-mime-info.c
---- libgnomevfs/gnome-vfs-mime-info.c	17 Jul 2003 22:33:27 -0000	1.76
-+++ libgnomevfs/gnome-vfs-mime-info.c	24 Mar 2004 13:16:51 -0000
-@@ -122,7 +122,7 @@
- #define DELETED_VALUE "moilegrandvizir"
- 
- /* These ones are used to automatically reload mime info on demand */
--static mime_dir_source_t gnome_mime_dir, user_mime_dir;
-+static mime_dir_source_t gnome_mime_dir, old_user_mime_dir, user_mime_dir;
- static time_t last_checked;
- 
- /* To initialize the module automatically */
-@@ -624,13 +624,21 @@
- {
- 	mime_info_load (&gnome_mime_dir);
- 	mime_info_load (&user_mime_dir);
-+
- 	mime_list_load (&gnome_mime_dir);
- 	mime_list_load (&user_mime_dir);
-+
-+	if (old_user_mime_dir.dirname != NULL) {
-+		mime_info_load (&old_user_mime_dir);
-+		mime_list_load (&old_user_mime_dir);
-+	}
- }
- 
- static void
- gnome_vfs_mime_init (void)
- {
-+	gchar *dirname;
-+
- 	/*
- 	 * The hash tables that store the mime keys.
- 	 */
-@@ -649,9 +657,18 @@
- 	gnome_mime_dir.system_dir = TRUE;
- 
- 	user_mime_dir.dirname  = g_strconcat
--		(g_get_home_dir (), "/.gnome/mime-info", NULL);
-+		(g_get_home_dir (), "/.gnome2/mime-info", NULL);
- 	user_mime_dir.system_dir = FALSE;
- 
-+	dirname = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
-+	if (g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
-+		old_user_mime_dir.dirname  = dirname;
-+		old_user_mime_dir.system_dir = FALSE;	
-+	} else {
-+		memset (&old_user_mime_dir, 0, sizeof (old_user_mime_dir));
-+		g_free (dirname);
-+	}
-+
- 	/*
- 	 * Load
- 	 */
 Index: libgnomevfs/gnome-vfs-mime-monitor.c
 ===================================================================
 RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-mime-monitor.c,v
