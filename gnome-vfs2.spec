@@ -17,7 +17,6 @@ Patch2:		%{name}-locale-names.patch
 Patch3:		%{name}-onlyshowin.patch
 Patch4:		%{name}-capplets-dir.patch
 Patch5:		%{name}-gnome2-dir.patch
-#Patch6:		%{name}-enum.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.3
 BuildRequires:	ORBit2-devel >= 1:2.11.1
@@ -38,7 +37,7 @@ BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
 %{?with_hal:BuildRequires:	hal-devel >= 0.2.92}
 BuildRequires:	heimdal-devel
-BuildRequires:	howl-devel >= 0.9.5
+BuildRequires:	howl-devel >= 0.9.6
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.6.1
 BuildRequires:	libsmbclient-devel >= 3.0
@@ -114,7 +113,6 @@ Menu GNOME przy u¿yciu vfolder.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p0
-#%patch6 -p1
 
 mv po/{no,nb}.po
 
