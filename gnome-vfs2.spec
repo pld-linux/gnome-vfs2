@@ -1,24 +1,15 @@
-#
-# Conditional build:
-%bcond_without gtk	# don't build the gtkfilechooser module, which
-                    # requires gtk+2-devel and libgnomeui-devel.
-                    # It's necessary to build GNOME from scratch, because
-                    # libgnomeui requires gnome-vfs2 to build.
-#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.5.8
-Release:	3
+Version:	2.5.90
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.5/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	cfc54da0a7364c6893eadd8c662bf7c3
+# Source0-md5:	6cff86680728586f4ebd58fc41c163d4
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
-Patch3:		%{name}-inc_fixes.patch
-Patch4:		%{name}-gtk.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.5.1
 BuildRequires:	ORBit2-devel >= 1:2.9.2
@@ -34,11 +25,11 @@ BuildRequires:	glib2-devel >= 2.3.1
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
-BuildRequires:	gtk+2-devel >= 2.3.5
+BuildRequires:	gnutls-devel >= 1.0.0
+BuildRequires:	gtk+2-devel >= 2:2.3.5
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	intltool >= 0.30
-BuildRequires:	libbonobo-devel >= 2.5.1
-%{?with_gtk:BuildRequires:	libgnomeui-devel >= 2.5.1}
+BuildRequires:	libbonobo-devel >= 2.6.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.10
@@ -47,7 +38,7 @@ BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
-Requires:	libbonobo >= 2.5.1
+Requires:	libbonobo >= 2.6.0
 Requires:	shared-mime-info >= 0.13
 Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -90,8 +81,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 mv po/{no,nb}.po
 
@@ -108,8 +97,7 @@ gtkdocize --copy
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
-	--enable-ipv6 \
-	--with-gtk=%{?with_gtk:yes}%{!?with_gtk:no}
+	--enable-ipv6
 
 %{__make}
 
@@ -144,10 +132,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
-%if %{with gtk}
-%dir %{_libdir}/gtk-2.0/2.2.0/filesystems
-%attr(755,root,root) %{_libdir}/gtk-2.0/2.2.0/filesystems/libgnome-vfs.so
-%endif
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
