@@ -6,13 +6,14 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.10.0
-Release:	5
+Release:	5.1
 License:	LGPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
 # Source0-md5:	bb9df65d6a77414bbde9f1bc429c9d97
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-defaults-path.patch
+Patch1:		%{name}-no_g_mime.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -28,7 +29,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.6.2
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 1.1
 %{?with_hal:BuildRequires:	hal-devel >= 0.4.7}
@@ -45,6 +45,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
+Requires(post,pre):	GConf2
 %{?with_hal:Requires:	hal-libs >= 0.4.7}
 Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.8.1
@@ -93,6 +94,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %prep
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -113,6 +115,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -125,8 +128,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/applications
-install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/gnome/applications/defaults.list
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
 %find_lang gnome-vfs-2.0
 
@@ -135,9 +137,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%gconf_schema_install
+%gconf_schema_install /etc/gconf/schemas/desktop_default_applications.schemas
+%gconf_schema_install /etc/gconf/schemas/desktop_gnome_url_handlers.schemas
+%gconf_schema_install /etc/gconf/schemas/system_dns_sd.schemas
+%gconf_schema_install /etc/gconf/schemas/system_http_proxy.schemas
+%gconf_schema_install /etc/gconf/schemas/system_smb.schemas
 
 %postun -p /sbin/ldconfig
+
+%preun
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/desktop_default_applications.schemas
+	%gconf_schema_uninstall /etc/gconf/schemas/desktop_gnome_url_handlers.schemas
+	%gconf_schema_uninstall /etc/gconf/schemas/system_dns_sd.schemas
+	%gconf_schema_uninstall /etc/gconf/schemas/system_http_proxy.schemas
+	%gconf_schema_uninstall /etc/gconf/schemas/system_smb.schemas
+fi
 
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
@@ -152,8 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
-%dir %{_datadir}/gnome/applications
-%{_datadir}/gnome/applications/defaults.list
+%{_desktopdir}/*.list
 
 %files devel
 %defattr(644,root,root,755)
