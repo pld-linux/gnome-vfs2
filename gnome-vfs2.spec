@@ -19,14 +19,15 @@ BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
+BuildRequires:	gnome-common
+BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.0.1
-BuildRequires:	gtk-doc
+BuildRequires:	gtk-doc >= 0.9-6
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.24
 BuildRequires:	openssl-devel >= 0.9.6d
 BuildRequires:	zlib-devel
-BuildRequires:	gnome-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
