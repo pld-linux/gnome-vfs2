@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.0.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
@@ -31,7 +31,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_gtkdocdir	/usr/share/doc/gtk-doc/html
+%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
 GNOME2 Virtual File System library.
@@ -44,6 +44,7 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	gtk-doc-common
 
 %description devel
 This package contains header files for gnome-vfs2 library.
