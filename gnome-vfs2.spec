@@ -18,8 +18,6 @@ Patch3:		%{name}-capplets-dir.patch
 Patch4:		%{name}-gnome2-dir.patch
 Patch5:		%{name}-categories.patch
 Patch6:		%{name}-hal.patch
-Patch7:		%{name}-bufer-fix.patch
-Patch8:		%{name}-mtab-mtime-check.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.8.0.1
 BuildRequires:	ORBit2-devel >= 1:2.12.0
