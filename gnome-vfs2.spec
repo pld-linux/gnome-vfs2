@@ -20,6 +20,7 @@ BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	gnome-mime-data-devel >= 2.0.0
+BuildRequires:	gtk-doc
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.22
@@ -77,10 +78,9 @@ aclocal -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-gtk-doc
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
-
-gzip -9nf AUTHORS ChangeLog NEWS README
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -102,7 +102,7 @@ GCONF_CONFIG_SOURCE="" /usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sys
 
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_libdir}/*.so.*.*
