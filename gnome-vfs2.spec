@@ -6,7 +6,6 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp.gnome.org:/pub/GNOME2/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
-Patch0:		%{name}-gconf2.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 1.1
 BuildRequires:	ORBit2-devel >= 2.3.90
@@ -61,7 +60,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %prep
 %setup -q -n gnome-vfs-%{version}
-%patch0 -p1
 
 %build
 %configure \
