@@ -6,7 +6,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.7.90
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.7/gnome-vfs-%{version}.tar.bz2
@@ -17,8 +17,7 @@ Patch2:		%{name}-locale-names.patch
 Patch3:		%{name}-onlyshowin.patch
 Patch4:		%{name}-capplets-dir.patch
 Patch5:		%{name}-gnome2-dir.patch
-Patch6:		%{name}-modules_conf.patch
-Patch7:		%{name}-enum.patch
+Patch6:		%{name}-enum.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.3
 BuildRequires:	ORBit2-devel >= 1:2.11.1
@@ -50,6 +49,7 @@ BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
+Requires:	gnome-vfs-menu-module
 %{?with_hal:Requires:	hal >= 0.2.92}
 Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
@@ -91,6 +91,20 @@ This package contains static gnome-vfs2 libraries.
 %description static -l pl
 Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
+%package vfolder-menu
+Summary:	gnome-vfs2 - vfolder based gnome menu
+Summary(pl):	gnome-vfs2 - menu gnome przy u¿yciu vfolder
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Provides:	gnome-vfs-menu-module
+Obsoletes:	gnome-vfs2-module-menu
+
+%description vfolder-menu
+Vfolder based gnome menu.
+
+%description vfolder-menu -l pl
+Menu gnome przy u¿yciu vfolder.
+
 %prep
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
@@ -100,7 +114,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch4 -p1
 %patch5 -p0
 %patch6 -p1
-%patch7 -p1
 
 mv po/{no,nb}.po
 
@@ -150,6 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
 %{_sysconfdir}/gconf/schemas/*
+%exclude %{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
@@ -173,3 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files vfolder-menu
+%defattr(644,root,root,755)
+%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
