@@ -36,7 +36,9 @@ BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
 %{?with_hal:BuildRequires:	hal-devel >= 0.2.97}
 BuildRequires:	heimdal-devel
+%ifnarch alpha
 BuildRequires:	howl-devel >= 0.9.6
+%endif
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.6.1
 BuildRequires:	libsmbclient-devel >= 3.0
