@@ -30,6 +30,7 @@ BuildRequires:	libxml2-devel >= 2.5.10
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
+BuildRequires:	intltool
 Requires:	libbonobo >= 2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
