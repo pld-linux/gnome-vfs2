@@ -46,9 +46,10 @@ Biblioteka Wirtualnego Systemu Plików GNOME2.
 Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.3.3
 Requires:	gtk-doc-common
+Requires:	libbonobo-devel >= 2.4.0
 Requires:	openssl-devel >= 0.9.7c
 
 %description devel
@@ -61,7 +62,7 @@ Pakiet ten zawiera pliki nag³ówkowe biblioteki gnome-vfs2.
 Summary:	gnome-vfs2 - static libraries
 Summary(pl):	gnome-vfs2 - biblioteki statyczne
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains static gnome-vfs2 libraries.
