@@ -161,7 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
 %{_sysconfdir}/gconf/schemas/*
-%{_sysconfdir}/gnome-vfs-2.0/modules/default-modules.conf
+%exclude %{_sysconfdir}/gnome-vfs-2.0/modules/menu.conf
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
