@@ -1,16 +1,16 @@
 #
 # Conditional build:
-%bcond_without	hal	# don't use hal
+%bcond_with	hal	# use hal
 #
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.7.5
+Version:	2.7.90
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.7/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	39a5ac39d93386578ecf3201ce79828f
+# Source0-md5:	4961fe0112abc632f8486bcf8c94b909
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
@@ -40,7 +40,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.5
 BuildRequires:	intltool >= 0.30
-BuildRequires:	libbonobo-devel >= 2.6.0
+BuildRequires:	libbonobo-devel >= 2.6.1
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.0
@@ -50,7 +50,7 @@ BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 %{?with_hal:Requires:	hal >= 0.2.92}
-Requires:	libbonobo >= 2.6.0
+Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
 Obsoletes:	gnome-vfs-extras
 Conflicts:	libgnome < 2.5.1
@@ -69,7 +69,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.7.3
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.6.0
+Requires:	libbonobo-devel >= 2.6.1
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
