@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.3/gnome-vfs-%{version}.tar.bz2
+# Source0-md5: 8faab56baf1985067990de1a2893ea1f
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
