@@ -1,0 +1,18 @@
+diff -Nuard gnome-vfs-2.4.1.orig.orig/modules/vfolder/preferences-all-users.vfolder-info.in gnome-vfs-2.4.1/modules/vfolder/preferences-all-users.vfolder-info.in
+--- gnome-vfs-2.4.1.orig.orig/modules/vfolder/preferences-all-users.vfolder-info.in	2002-08-30 04:31:08.000000000 +0200
++++ gnome-vfs-2.4.1/modules/vfolder/preferences-all-users.vfolder-info.in	2003-11-09 02:06:39.000000000 +0100
+@@ -3,11 +3,13 @@
+   <WriteDir>@vfolderdir@/preferences-all-users/</WriteDir>
+ 
+   <!-- Capplet location for our prefix -->
++  <ItemDir>@datadir@/gnome/capplets/</ItemDir>
++  
++  <!-- obsolete location -->
+   <ItemDir>@datadir@/control-center-2.0/capplets/</ItemDir>
+ 
+   <!-- Merge dirs optional -->
+   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
+-  <MergeDir>@datadir@/gnome/capplets</MergeDir>
+ 
+   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
+ 
