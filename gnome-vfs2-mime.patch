@@ -1,0 +1,35 @@
+diff -Nuard gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c
+--- gnome-vfs-2.6.0.orig/libgnomevfs/gnome-vfs-mime-info.c	2003-10-17 17:11:22.000000000 +0200
++++ gnome-vfs-2.6.0/libgnomevfs/gnome-vfs-mime-info.c	2004-04-17 20:34:28.000000000 +0200
+@@ -258,6 +258,8 @@
+ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
+ {
+ 	int lang_level;
++	gpointer prevtmp = NULL;
++	gchar *newval = NULL;
+ 
+ 	lang_level = language_level (lang);
+ 	/* wrong language completely */
+@@ -270,9 +272,19 @@
+ 		return;
+ 	}
+ 
+-	/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level);*/
+-
+-	g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
++/*	g_print ("Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level); */
++	
++	prevtmp = g_hash_table_lookup(context->keys,g_strdup (key));
++	
++	if ((prevtmp != NULL) && (strstr(key,"list_application_ids") != NULL) && (strstr(prevtmp,value) == NULL)) {
++		newval = g_strconcat(prevtmp,",",value,NULL);
++	} else {
++		newval = g_strdup(value);
++	}
++	
++/*	g_print("%s %s\n",key,newval); */
++	
++	g_hash_table_replace (context->keys, g_strdup (key), newval);
+ 
+ 	previous_key_lang_level = lang_level;
+ }
