@@ -1,29 +1,31 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	1.9.16
+Version:	1.9.17
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
 Patch0:		%{name}-am15.patch
 Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
+Patch2:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 1.1.10
-BuildRequires:	ORBit2-devel >= 2.3.108
+BuildRequires:	GConf2-devel >= 1.1.11
+BuildRequires:	ORBit2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 0.9.9
+BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	bzip2-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.0.1
+BuildRequires:	glib2-devel >= 2.0.3
 BuildRequires:	gnome-mime-data-devel >= 1.0.8
-BuildRequires:	libbonobo-devel >= 0.116.0
-BuildRequires:	libtool >= 1.4.2-10
+BuildRequires:	libbonobo-devel >= 2.0.0
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
+BuildRequires:	gnome-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -64,11 +66,12 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
 libtoolize --copy --force
-aclocal
+aclocal -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
 %configure \
