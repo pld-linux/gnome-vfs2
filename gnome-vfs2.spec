@@ -6,7 +6,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.10.0
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
@@ -33,7 +33,7 @@ BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 1.1
 %{?with_hal:BuildRequires:	hal-devel >= 0.4.7}
 BuildRequires:	heimdal-devel
-BuildRequires:	howl-devel >= 0.9.6-2
+BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libsmbclient-devel >= 3.0
