@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.6.1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.6/gnome-vfs-%{version}.tar.bz2
@@ -42,7 +42,7 @@ BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	libbonobo >= 2.6.0
-Requires:	shared-mime-info >= 0.14
+Requires:	shared-mime-info >= 0.14-2
 Obsoletes:	gnome-vfs-extras
 Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
