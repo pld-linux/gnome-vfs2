@@ -18,6 +18,7 @@ BuildRequires:	bonobo-activation-devel >= 2.1.0-3
 BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 BuildRequires:	fam-devel
+BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	gnome-common
