@@ -1,0 +1,3 @@
+- commented out fedora hal patch - it breaks pendrive support (reported by
+  Artur Flinta, thx)
+- added two more fixes from fedora (bufer-fix and mtab-mtime-check)
