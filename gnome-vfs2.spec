@@ -22,7 +22,7 @@ BuildRequires:	gnome-mime-data-devel >= 1.0.8
 BuildRequires:	libbonobo-devel >= 0.116.0
 BuildRequires:	libtool >= 1.4.2-10
 BuildRequires:	libxml2-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
