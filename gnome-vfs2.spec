@@ -6,6 +6,8 @@ Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org:/pub/GNOME/pre-gnome2/sources/gnome-vfs/gnome-vfs-%{version}.tar.bz2
+Patch0:		%{name}-am15.patch
+Patch1:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 1.1.10
 BuildRequires:	ORBit2-devel >= 2.3.108
@@ -60,16 +62,20 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %prep
 %setup -q -n gnome-vfs-%{version}
+%patch0 -p1
+%patch1 -p1
 
 %build
-#rm -f missing acinclude.m4
+rm -f missing
 libtoolize --copy --force
-#aclocal
+aclocal
 autoconf
-#automake -a -c -f
+automake -a -c -f
 %configure \
 	--disable-gtk-doc
 %{__make}
+
+gzip -9nf AUTHORS ChangeLog NEWS README
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -77,8 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
-
-gzip -9nf AUTHORS ChangeLog NEWS README
 
 %find_lang gnome-vfs-2.0
 
