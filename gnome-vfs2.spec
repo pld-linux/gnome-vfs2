@@ -1,12 +1,12 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.6.0
-Release:	5
+Version:	2.6.1
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.6/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	4d0323cf015dd006210fcacd4bfe7420
+# Source0-md5:	c192cd126ff5bf113348e21385c3fb5e
 Patch0:		%{name}-applnk.patch
 Patch1:		%{name}-application.patch
 Patch2:		%{name}-locale-names.patch
@@ -15,7 +15,7 @@ Patch4:		%{name}-capplets-dir.patch
 Patch5:		%{name}-mime.patch
 Patch6:		%{name}-gnome2-dir.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.5.90
+BuildRequires:	GConf2-devel >= 2.6.0
 BuildRequires:	ORBit2-devel >= 1:2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,7 +25,7 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.3.6
+BuildRequires:	glib2-devel >= 1:2.4.0
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
@@ -57,7 +57,7 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.5.90
+Requires:	GConf2-devel >= 2.6.0
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.6.0
 Requires:	openssl-devel >= 0.9.7d
