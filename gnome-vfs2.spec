@@ -9,6 +9,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.3/gnome-vfs-%{versio
 Patch0:		%{name}-rm_GNOME_COMMON_INIT_and_GNOME_PLATFORM_GNOME_2.patch
 Patch1:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
+BuildRequires:	GConf2-devel >= 2.2.0
+BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.2.0
@@ -16,7 +18,6 @@ BuildRequires:	bzip2-devel
 BuildRequires:  docbook-dtd412-xml >= 1.0-10 
 BuildRequires:	fam-devel
 BuildRequires:	flex
-BuildRequires:	GConf2-devel >= 2.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gnome-common
@@ -27,7 +28,6 @@ BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.5.1
 BuildRequires:	openssl-devel >= 0.9.7
-BuildRequires:	ORBit2-devel >= 2.7.1
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	bonobo-activation >= 2.2.0
@@ -90,6 +90,9 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir} \
 	m4dir=%{_aclocaldir}
 
+# no static modules
+rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.a
+
 %find_lang gnome-vfs-2.0
 
 %clean
@@ -109,12 +112,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
-%{_libdir}/gnome-vfs-2.0/modules/*.la
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
+%{_libdir}/gnome-vfs-2.0/modules/*.la
 %attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
-%{_libdir}/bonobo/monikers/*.la
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
+%{_libdir}/bonobo/monikers/*.la
 
 %files devel
 %defattr(644,root,root,755)
@@ -129,5 +132,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/gnome-vfs-2.0/modules/*.a
-%{_libdir}/bonobo/monikers/*.a
