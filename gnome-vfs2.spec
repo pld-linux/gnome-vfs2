@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	hal	# use hal
+%bcond_without	hal	# don't use hal
 #
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.8.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.8/gnome-vfs-%{version}.tar.bz2
@@ -34,7 +34,7 @@ BuildRequires:	gnome-doc-tools
 BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.2.97}
+%{?with_hal:BuildRequires:	hal-devel >= 0.2.98}
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.6-2
 BuildRequires:	intltool >= 0.30
@@ -49,7 +49,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	zlib-devel
 Requires:	desktop-file-utils >= 0.7
 Requires:	gnome-vfs-menu-module >= 1.0-1
-%{?with_hal:Requires:	hal >= 0.2.97}
+%{?with_hal:Requires:	hal >= 0.2.98}
 Requires:	howl-libs >= 0.9.6-2
 Requires:	libbonobo >= 2.6.1
 Requires:	shared-mime-info >= 0.14
