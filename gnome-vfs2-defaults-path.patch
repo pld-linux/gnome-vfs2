@@ -1,12 +1,24 @@
-diff -Nuard gnome-vfs-2.8.3.orig/libgnomevfs/eggdirfuncs.c gnome-vfs-2.8.3/libgnomevfs/eggdirfuncs.c
---- gnome-vfs-2.8.3.orig/libgnomevfs/eggdirfuncs.c	2004-12-08 15:10:12.768163792 +0100
-+++ gnome-vfs-2.8.3/libgnomevfs/eggdirfuncs.c	2004-12-08 15:11:43.400385600 +0100
-@@ -106,7 +106,7 @@
-   data_dirs = (gchar *) g_getenv ("XDG_DATA_DIRS");
+diff -urN aa/gnome-vfs-2.9.90/libgnomevfs/gnome-vfs-mime-info.c gnome-vfs-2.9.90/libgnomevfs/gnome-vfs-mime-info.c
+--- aa/gnome-vfs-2.9.90/libgnomevfs/gnome-vfs-mime-info.c	2004-12-14 16:30:29.000000000 +0100
++++ gnome-vfs-2.9.90/libgnomevfs/gnome-vfs-mime-info.c	2005-02-06 22:33:14.677240592 +0100
+@@ -150,7 +150,7 @@
  
-   if (!data_dirs || !data_dirs[0])
--    data_dirs = "/usr/local/share/:/usr/share/";
-+    data_dirs = "/usr/local/share/:/usr/share/gnome/:/usr/share/";
+ 	xdg_data_dirs = g_getenv ("XDG_DATA_DIRS");
+ 	if (!xdg_data_dirs) {
+-		xdg_data_dirs = "/usr/local/share/:/usr/share/";
++		xdg_data_dirs = "/usr/local/share/:/usr/share/gnome/:/usr/share/";
+ 	}
+ 	
+ 	split_data_dirs = g_strsplit (xdg_data_dirs, ":", 0);
+diff -urN aa/gnome-vfs-2.9.90/libgnomevfs/xdgmime.c gnome-vfs-2.9.90/libgnomevfs/xdgmime.c
+--- aa/gnome-vfs-2.9.90/libgnomevfs/xdgmime.c	2004-12-14 16:30:30.000000000 +0100
++++ gnome-vfs-2.9.90/libgnomevfs/xdgmime.c	2005-02-06 22:33:25.327621488 +0100
+@@ -207,7 +207,7 @@
  
-   data_dir_vector = g_strsplit (data_dirs, ":", 0);
+   xdg_data_dirs = getenv ("XDG_DATA_DIRS");
+   if (xdg_data_dirs == NULL)
+-    xdg_data_dirs = "/usr/local/share/:/usr/share/";
++    xdg_data_dirs = "/usr/local/share/:/usr/share/gnome/:/usr/share/";
+ 
+   ptr = xdg_data_dirs;
  
