@@ -1,7 +1,7 @@
 diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c
 --- gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c	2003-09-27 17:42:52.000000000 +0200
-+++ gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c	2003-12-14 18:52:30.369444160 +0100
-@@ -201,13 +201,33 @@
++++ gnome-vfs-2.4.1/modules/vfolder/vfolder-common.c	2003-12-14 22:42:57.952332040 +0100
+@@ -201,13 +201,34 @@
  entry_reload_if_needed (Entry *entry)
  {
  	gboolean changed = FALSE;
@@ -29,6 +29,7 @@ diff -Nuard gnome-vfs-2.4.1.orig/modules/vfolder/vfolder-common.c gnome-vfs-2.4.
 +		}
 +		
 +		g_free (onlyshowin);
++		g_strfreev (parsed);
 +		if (!show) return;
 +	}
 +
