@@ -1,15 +1,15 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.3.4
+Version:	2.3.5
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.3/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	07c7959571b29befeec23dff185eba80
+# Source0-md5:	1dd428f26d1f12c739aa2b1ecf3c1e13
 Patch0:		%{name}-applnk.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.2.0
+BuildRequires:	GConf2-devel >= 2.3.3
 BuildRequires:	ORBit2-devel >= 2.7.2
 BuildRequires:	autoconf
 BuildRequires:	automake
