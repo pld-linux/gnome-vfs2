@@ -1,7 +1,7 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	1.9.14
+Version:	1.9.15
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
@@ -63,7 +63,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 
 %build
 #rm -f missing acinclude.m4
-#libtoolize --copy --force
+libtoolize --copy --force
 #aclocal
 autoconf
 #automake -a -c -f
@@ -91,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
 %doc *.gz
+#%{_datadir}/gtk-doc/html/gnome-vfs-2.0
 %{_sysconfdir}/gnome-vfs-2.0
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
@@ -98,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.??
 %attr(755,root,root) %{_libdir}/vfs
 %{_libdir}/bonobo/servers/*
+%{_libdir}/bonobo/monikers/*.??
 
 %files devel
 %defattr(644,root,root,755)
