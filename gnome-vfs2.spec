@@ -37,7 +37,7 @@ BuildRequires:	howl-devel >= 0.9.6-2
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.8.1
 BuildRequires:	libsmbclient-devel >= 3.0
-BuildRequires:	libtool >= 1.5.14
+BuildRequires:	libtool >= 2:1.5.14
 BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
