@@ -23,7 +23,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
-BuildRequires:	dbus-glib-devel >= 0.22-5
+%{?with_hal:BuildRequires:	dbus-glib-devel >= 0.22-5}
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
