@@ -6,7 +6,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.10.0
-Release:	6
+Release:	7
 License:	LGPL
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
@@ -44,7 +44,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	rpmbuild(macros) >= 1.196
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2
 %{?with_hal:Requires:	hal-libs >= 0.4.7}
@@ -137,26 +137,22 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
-%gconf_schema_install /etc/gconf/schemas/desktop_default_applications.schemas
-%gconf_schema_install /etc/gconf/schemas/desktop_gnome_url_handlers.schemas
-%gconf_schema_install /etc/gconf/schemas/system_dns_sd.schemas
-%gconf_schema_install /etc/gconf/schemas/system_http_proxy.schemas
-%gconf_schema_install /etc/gconf/schemas/system_smb.schemas
+%ldconfig_post
+%gconf_schema_install desktop_default_applications.schemas
+%gconf_schema_install desktop_gnome_url_handlers.schemas
+%gconf_schema_install system_dns_sd.schemas
+%gconf_schema_install system_http_proxy.schemas
+%gconf_schema_install system_smb.schemas
 
 %preun
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/desktop_default_applications.schemas
-	%gconf_schema_uninstall /etc/gconf/schemas/desktop_gnome_url_handlers.schemas
-	%gconf_schema_uninstall /etc/gconf/schemas/system_dns_sd.schemas
-	%gconf_schema_uninstall /etc/gconf/schemas/system_http_proxy.schemas
-	%gconf_schema_uninstall /etc/gconf/schemas/system_smb.schemas
-fi
+%gconf_schema_uninstall desktop_default_applications.schemas
+%gconf_schema_uninstall desktop_gnome_url_handlers.schemas
+%gconf_schema_uninstall system_dns_sd.schemas
+%gconf_schema_uninstall system_http_proxy.schemas
+%gconf_schema_uninstall system_smb.schemas
 
 %postun
-if [ $1 = 0 ]; then
-	/sbin/ldconfig
-fi
+%ldconfig_postun
 
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
