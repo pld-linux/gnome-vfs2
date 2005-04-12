@@ -138,7 +138,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%ldconfig_post
+/sbin/ldconfig
 %gconf_schema_install desktop_default_applications.schemas
 %gconf_schema_install desktop_gnome_url_handlers.schemas
 %gconf_schema_install system_dns_sd.schemas
@@ -152,8 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall system_http_proxy.schemas
 %gconf_schema_uninstall system_smb.schemas
 
-%postun
-%ldconfig_postun
+%postun -p /sbin/ldconfig
 
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
