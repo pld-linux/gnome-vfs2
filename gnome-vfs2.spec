@@ -46,7 +46,7 @@ BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
-Requires(post,postun):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
 Requires(post,preun):	GConf2
 %{?with_hal:Requires:	hal-libs >= 0.4.7}
 Requires:	howl-libs >= 0.9.10
