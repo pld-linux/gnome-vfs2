@@ -1,20 +1,15 @@
-#
-# Conditional build:
-%bcond_without	hal	# don't use hal
-#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.10.1
-Release:	4
+Version:	2.11.3
+Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	88b520e5de748a310a2aef62fc095c8b
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.11/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	821407dab314c0a0fab9f84fe095148a
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-defaults-path.patch
 Patch1:		%{name}-no_g_mime.patch
-Patch2:		%{name}-hal.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -22,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
-%{?with_hal:BuildRequires:	dbus-glib-devel >= 0.33}
+BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
@@ -32,7 +27,7 @@ BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.5.2}
+BuildRequires:	hal-devel >= 0.5.2
 BuildRequires:	heimdal-devel
 BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
@@ -49,7 +44,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	GConf2
-%{?with_hal:Requires:	hal-libs >= 0.5.2}
+Requires:	hal-libs >= 0.5.2
 Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.8.1
 Requires:	shared-mime-info >= 0.15
@@ -98,7 +93,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0
 
 %build
 %{__libtoolize}
@@ -110,11 +104,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
 	--enable-ipv6 \
-%if %{with hal}
-	--enable-hal
-%else
-	--disable-hal
-%endif
+
+# check -DMOUNT_ARGUMENT=\\\"-s\\\"" before 2.12
 %{__make} CFLAGS="%{rpmcflags} -DMOUNT_ARGUMENT=\\\"-s\\\""
 
 %install
