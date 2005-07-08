@@ -1,18 +1,15 @@
-#
-# Conditional build:
-%bcond_without	hal	# don't use hal
-#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.10.0
-Release:	5
-License:	LGPL
+Version:	2.10.1
+Release:	6
+License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	bb9df65d6a77414bbde9f1bc429c9d97
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	88b520e5de748a310a2aef62fc095c8b
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-defaults-path.patch
+Patch1:		%{name}-no_g_mime.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -20,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
-%{?with_hal:BuildRequires:	dbus-glib-devel >= 0.23}
+BuildRequires:	dbus-glib-devel >= 0.23
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
@@ -28,11 +25,10 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.6.2
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mime-data-devel >= 2.4.1
 BuildRequires:	gtk+2-devel >= 2:2.6.2
 BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.4.7}
-BuildRequires:	heimdal-devel
+BuildRequires:	hal-devel >= 0.4.7
+BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.8.1
@@ -44,8 +40,11 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
-%{?with_hal:Requires:	hal-libs >= 0.4.7}
+Requires(post):	/sbin/ldconfig
+Requires(post,preun):	GConf2
+Requires:	hal-libs >= 0.4.7
 Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.8.1
 Requires:	shared-mime-info >= 0.15
@@ -93,6 +92,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %prep
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -104,15 +104,13 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
 	--enable-ipv6 \
-%if %{with hal}
 	--enable-hal
-%else
-	--disable-hal
-%endif
+
 %{__make} CFLAGS="%{rpmcflags} -DMOUNT_ARGUMENT=\\\"-s\\\""
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -125,8 +123,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/applications
-install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/gnome/applications/defaults.list
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
 %find_lang gnome-vfs-2.0
 
@@ -135,7 +132,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%gconf_schema_install
+%gconf_schema_install desktop_default_applications.schemas
+%gconf_schema_install desktop_gnome_url_handlers.schemas
+%gconf_schema_install system_dns_sd.schemas
+%gconf_schema_install system_http_proxy.schemas
+%gconf_schema_install system_smb.schemas
+
+%preun
+%gconf_schema_uninstall desktop_default_applications.schemas
+%gconf_schema_uninstall desktop_gnome_url_handlers.schemas
+%gconf_schema_uninstall system_dns_sd.schemas
+%gconf_schema_uninstall system_http_proxy.schemas
+%gconf_schema_uninstall system_smb.schemas
 
 %postun -p /sbin/ldconfig
 
@@ -152,8 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
-%dir %{_datadir}/gnome/applications
-%{_datadir}/gnome/applications/defaults.list
+%{_desktopdir}/*.list
 
 %files devel
 %defattr(644,root,root,755)
