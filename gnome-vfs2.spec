@@ -95,6 +95,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch1 -p1
 
 %build
+# force rebuild
+touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
