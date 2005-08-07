@@ -2,7 +2,7 @@ Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.11.90
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.11/gnome-vfs-%{version}.tar.bz2
@@ -139,6 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install system_dns_sd.schemas
 %gconf_schema_install system_http_proxy.schemas
 %gconf_schema_install system_smb.schemas
+%gconf_schema_install system_storage.schemas
 
 %preun
 %gconf_schema_uninstall desktop_default_applications.schemas
@@ -146,6 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall system_dns_sd.schemas
 %gconf_schema_uninstall system_http_proxy.schemas
 %gconf_schema_uninstall system_smb.schemas
+%gconf_schema_uninstall system_storage.schemas
 
 %postun -p /sbin/ldconfig
 
