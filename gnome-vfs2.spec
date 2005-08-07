@@ -115,9 +115,6 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
 	--enable-ipv6
-	#--with-hal-mount=/usr/bin/pmount \
-	#--with-hal-umount=/usr/bin/pumount \
-	#--with-hal-eject=/usr/bin/eject
 
 %{__make}
 
