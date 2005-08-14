@@ -1,0 +1,41 @@
+diff -Nur gnome-vfs2-2.10.1cvs20050510.orig/libgnomevfs/gnome-vfs-volume-monitor.c gnome-vfs2-2.10.1cvs20050510/libgnomevfs/gnome-vfs-volume-monitor.c
+--- gnome-vfs2-2.10.1cvs20050510.orig/libgnomevfs/gnome-vfs-volume-monitor.c	2005-04-21 01:58:14.000000000 +0200
++++ gnome-vfs2-2.10.1cvs20050510/libgnomevfs/gnome-vfs-volume-monitor.c	2005-05-10 15:30:29.165933432 +0200
+@@ -26,6 +26,7 @@
+ #include <string.h>
+ 
+ #include "gnome-vfs-private.h"
++#include "gnome-vfs-utils.h"
+ #include "gnome-vfs-volume-monitor.h"
+ #include "gnome-vfs-volume-monitor-private.h"
+ #include "gnome-vfs-volume-monitor-client.h"
+@@ -868,22 +869,28 @@
+ 	dev_t device;
+ 	GList *l;
+ 	GnomeVFSVolume *volume, *res;
++	char *uri;
+ 
+ 	if (g_stat (path, &statbuf) != 0)
+ 		return NULL;
+ 
+ 	device = statbuf.st_dev;
+ 
++	uri = gnome_vfs_get_uri_from_local_path(path);
++
+ 	res = NULL;
+ 	g_mutex_lock (volume_monitor->priv->mutex);
+ 	for (l = volume_monitor->priv->mtab_volumes; l != NULL; l = l->next) {
+ 		volume = l->data;
+-		if (volume->priv->unix_device == device) {
++		if (volume->priv->unix_device == device &&
++		    strncmp(volume->priv->activation_uri,uri,strlen(volume->priv->activation_uri)) == 0) {
+ 			res = gnome_vfs_volume_ref (volume);
+ 			break;
+ 		}
+ 	}
+ 	g_mutex_unlock (volume_monitor->priv->mutex);
+ 	
++	g_free(uri);
++
+ 	return res;
+ }
