@@ -111,7 +111,6 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
 	--enable-ipv6
-
 %{__make}
 
 %install
@@ -159,7 +158,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
-%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/gconf/schemas/desktop_default_applications.schemas
+%{_sysconfdir}/gconf/schemas/desktop_gnome_url_handlers.schemas
+%{_sysconfdir}/gconf/schemas/system_dns_sd.schemas
+%{_sysconfdir}/gconf/schemas/system_http_proxy.schemas
+%{_sysconfdir}/gconf/schemas/system_smb.schemas
+%{_sysconfdir}/gconf/schemas/system_storage.schemas
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
