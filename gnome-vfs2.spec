@@ -12,7 +12,6 @@ Patch0:		%{name}-defaults-path.patch
 Patch1:		%{name}-no_g_mime.patch
 Patch2:		%{name}-fstab_edit_crash.patch
 Patch3:		%{name}-disable_cdda.patch
-Patch4:		%{name}-handle-drives-without-media-detection.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -97,7 +96,6 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-#%patch4 -p0
 
 %build
 # force rebuild
