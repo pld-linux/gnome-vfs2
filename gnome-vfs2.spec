@@ -1,28 +1,23 @@
-#
-# Conditional build:
-%bcond_without	hal	# don't use hal
-#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.10.1
-Release:	7
+Version:	2.12.0
+Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.10/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	88b520e5de748a310a2aef62fc095c8b
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.12/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	3323e7472a736716150337d2fc564a43
 Source1:	%{name}-defaults.list
-Patch0:		%{name}-defaults-path.patch
-Patch1:		%{name}-no_g_mime.patch
-Patch2:		%{name}-hal.patch
+Patch0:		%{name}-no_g_mime.patch
+Patch1:		%{name}-fstab_edit_crash.patch
+Patch2:		%{name}-disable_cdda.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.10.0
-BuildRequires:	ORBit2-devel >= 1:2.12.1
+BuildRequires:	GConf2-devel >= 2.12.0
+BuildRequires:	ORBit2-devel >= 1:2.12.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
-BuildRequires:	cdparanoia-III-devel
-%{?with_hal:BuildRequires:	dbus-glib-devel >= 0.33}
+BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
@@ -30,16 +25,16 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.6.2
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gtk+2-devel >= 2:2.6.2
-BuildRequires:	gtk-doc >= 1.1
-%{?with_hal:BuildRequires:	hal-devel >= 0.5.2}
+BuildRequires:	gtk+2-devel >= 2:2.6.3
+BuildRequires:	gtk-doc >= 1.4
+BuildRequires:	hal-devel >= 0.5.4
 BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
-BuildRequires:	libbonobo-devel >= 2.8.1
+BuildRequires:	libbonobo-devel >= 2.10.1
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
-BuildRequires:	libxml2-devel >= 2.6.0
+BuildRequires:	libxml2-devel >= 2.6.21
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -49,9 +44,9 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	GConf2
-%{?with_hal:Requires:	hal-libs >= 0.5.2}
+Requires:	hal-libs >= 0.5.4
 Requires:	howl-libs >= 0.9.10
-Requires:	libbonobo >= 2.8.1
+Requires:	libbonobo >= 2.10.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -70,10 +65,10 @@ Summary:	gnome-vfs2 - header files
 Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	GConf2-devel >= 2.10.0
+Requires:	GConf2-devel >= 2.12.0
 Requires:	gtk-doc-common
 Requires:	howl-devel >= 0.9.10
-Requires:	libbonobo-devel >= 2.8.1
+Requires:	libbonobo-devel >= 2.10.1
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
@@ -98,9 +93,11 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %setup -q -n gnome-vfs-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0
+%patch2 -p1
 
 %build
+# force rebuild
+touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -109,13 +106,8 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--disable-schemas-install \
-	--enable-ipv6 \
-%if %{with hal}
-	--enable-hal
-%else
-	--disable-hal
-%endif
-%{__make} CFLAGS="%{rpmcflags} -DMOUNT_ARGUMENT=\\\"-s\\\""
+	--enable-ipv6
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -146,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install system_dns_sd.schemas
 %gconf_schema_install system_http_proxy.schemas
 %gconf_schema_install system_smb.schemas
+%gconf_schema_install system_storage.schemas
 
 %preun
 %gconf_schema_uninstall desktop_default_applications.schemas
@@ -153,6 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall system_dns_sd.schemas
 %gconf_schema_uninstall system_http_proxy.schemas
 %gconf_schema_uninstall system_smb.schemas
+%gconf_schema_uninstall system_storage.schemas
 
 %postun -p /sbin/ldconfig
 
@@ -160,7 +154,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gnome-vfs-2.0
-%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/gconf/schemas/desktop_default_applications.schemas
+%{_sysconfdir}/gconf/schemas/desktop_gnome_url_handlers.schemas
+%{_sysconfdir}/gconf/schemas/system_dns_sd.schemas
+%{_sysconfdir}/gconf/schemas/system_http_proxy.schemas
+%{_sysconfdir}/gconf/schemas/system_smb.schemas
+%{_sysconfdir}/gconf/schemas/system_storage.schemas
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/*.so.*.*
