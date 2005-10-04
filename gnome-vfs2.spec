@@ -1,16 +1,18 @@
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.12.0
+Version:	2.12.1
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.12/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	3323e7472a736716150337d2fc564a43
+# Source0-md5:	95b0308d49aba17b9cb36c84f8467017
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-disable_cdda.patch
+Patch3:		%{name}-disable_cdda.patch
+Patch3:		%{name}-samba.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.12.0
 BuildRequires:	ORBit2-devel >= 1:2.12.3
@@ -94,6 +96,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 %build
 # force rebuild
