@@ -1,0 +1,32 @@
+diff -u -r1.387 configure.in
+--- configure.in	24 Aug 2005 07:45:44 -0000	1.387
++++ configure.in	2 Sep 2005 11:28:23 -0000
+@@ -517,6 +517,9 @@
+ 		AC_CHECK_MEMBER(SMBCCTX.flags,
+ 				[AC_DEFINE(HAVE_SAMBA_FLAGS,, [Defined if flags availible in SMBCCTXT])],,
+ 				[#include <libsmbclient.h>])
++		AC_CHECK_MEMBER(SMBCCTX.close,
++				[AC_DEFINE(HAVE_SAMBA_OLD_CLOSE, , [Defined if old close is available in SMBCCTXT])],,
++				[#include <libsmbclient.h>])
+ 		CPPFLAGS="$CPPFLAGS_save"
+ 	else
+ 		SAMBA_CFLAGS=""
+Index: modules/smb-method.c
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/modules/smb-method.c,v
+retrieving revision 1.33
+diff -u -r1.33 smb-method.c
+--- modules/smb-method.c	24 May 2005 16:41:44 -0000	1.33
++++ modules/smb-method.c	2 Sep 2005 11:28:25 -0000
+@@ -1486,7 +1486,11 @@
+ 
+ 		/* Important: perform_authentication leaves and re-enters the lock! */
+ 		while (perform_authentication (&actx) > 0) {
++#ifdef HAVE_SAMBA_OLD_CLOSE
+ 			r = smb_context->close (smb_context, handle->file);
++#else
++			r = smb_context->close_fn (smb_context, handle->file);
++#endif
+ 			actx.res = (r >= 0) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
+ 		}
+ 
