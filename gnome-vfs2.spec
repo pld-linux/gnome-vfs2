@@ -73,7 +73,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.12.0
 Requires:	gtk-doc-common
-Requires:	howl-devel >= 0.9.10
+#Requires:	howl-devel >= 0.9.10
 Requires:	libbonobo-devel >= 2.10.1
 Requires:	openssl-devel >= 0.9.7d
 
