@@ -1,12 +1,17 @@
+#
+# TODO:
+# - gnome-mount (with bcond - gnome-mount requires libgnomeui)
+# - drop howl use avahi instead
+#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.13.3
+Version:	2.13.4
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	5516fbfd0e39f882093ac18534f007b5
+# Source0-md5:	194490e2cfa95ec8eb753d4cc3992902
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -23,14 +28,14 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.6.2
+BuildRequires:	glib2-devel >= 1:2.9.3
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
 BuildRequires:	hal-devel >= 0.5.4
 BuildRequires:	heimdal-devel >= 0.7
-BuildRequires:	howl-devel >= 0.9.10
+#BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.10.1
 BuildRequires:	libsmbclient-devel >= 3.0
@@ -46,7 +51,7 @@ BuildRequires:	zlib-devel
 Requires(post):	/sbin/ldconfig
 Requires(post,preun):	GConf2
 Requires:	hal-libs >= 0.5.4
-Requires:	howl-libs >= 0.9.10
+#Requires:	howl-libs >= 0.9.10
 Requires:	libbonobo >= 2.10.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
@@ -56,14 +61,14 @@ Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GNOME2 Virtual File System library.
+GNOME Virtual File System library.
 
 %description -l pl
-Biblioteka Wirtualnego Systemu Plików GNOME2.
+Biblioteka Wirtualnego Systemu Plików GNOME.
 
 %package devel
-Summary:	gnome-vfs2 - header files
-Summary(pl):	gnome-vfs2 - pliki nag³ówkowe
+Summary:	gnome-vfs - header files
+Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.12.0
@@ -73,22 +78,34 @@ Requires:	libbonobo-devel >= 2.10.1
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
-This package contains header files for gnome-vfs2 library.
+This package contains header files for gnome-vfs library.
 
 %description devel -l pl
-Pakiet ten zawiera pliki nag³ówkowe biblioteki gnome-vfs2.
+Pakiet ten zawiera pliki nag³ówkowe biblioteki gnome-vfs.
 
 %package static
-Summary:	gnome-vfs2 - static libraries
-Summary(pl):	gnome-vfs2 - biblioteki statyczne
+Summary:	gnome-vfs - static libraries
+Summary(pl):	gnome-vfs - biblioteki statyczne
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-This package contains static gnome-vfs2 libraries.
+This package contains static gnome-vfs libraries.
 
 %description static -l pl
-Pakiet ten zawiera biblioteki statyczne gnome-vfs2.
+Pakiet ten zawiera biblioteki statyczne gnome-vfs.
+
+%package apidocs
+Summary:	gnome-vfs API documetation
+Summary(pl):	Dokumentacja API gnome-vfs
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+gnome-vfs API documetation.
+
+%description apidocs -l pl
+Dokumentacja API gnome-vfs.
 
 %prep
 %setup -q -n gnome-vfs-%{version}
@@ -180,8 +197,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
 %{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/gnome-vfs-2.0
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/gnome-vfs-2.0
