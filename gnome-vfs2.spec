@@ -22,7 +22,7 @@ BuildRequires:	GConf2-devel >= 2.12.0
 BuildRequires:	ORBit2-devel >= 1:2.12.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-devel
+BuildRequires:	avahi-glib-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
