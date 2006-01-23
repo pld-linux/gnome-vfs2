@@ -1,8 +1,3 @@
-#
-# TODO:
-# - gnome-mount (with bcond - gnome-mount requires libgnomeui)
-# - drop howl use avahi instead
-#
 Summary:	GNOME2 - virtual file system
 Summary(pl):	GNOME2 - wirtualny system plików
 Name:		gnome-vfs2
@@ -22,7 +17,7 @@ BuildRequires:	GConf2-devel >= 2.12.0
 BuildRequires:	ORBit2-devel >= 1:2.12.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel
+BuildRequires:	avahi-glib-devel >= 0.6
 BuildRequires:	bzip2-devel
 BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
@@ -32,11 +27,11 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.9.3
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
+BuildRequires:	gnome-mount-devel
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
-BuildRequires:	hal-devel >= 0.5.4
+BuildRequires:	hal-devel >= 0.5.6
 BuildRequires:	heimdal-devel >= 0.7
-#BuildRequires:	howl-devel >= 0.9.10
 BuildRequires:	intltool >= 0.30
 BuildRequires:	libbonobo-devel >= 2.10.1
 BuildRequires:	libsmbclient-devel >= 3.0
@@ -50,8 +45,8 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2
-Requires:	hal-libs >= 0.5.4
-#Requires:	howl-libs >= 0.9.10
+Requires:	gnome-mount >= 0.4
+Requires:	hal-libs >= 0.5.6
 Requires:	libbonobo >= 2.10.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
@@ -72,8 +67,8 @@ Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf2-devel >= 2.12.0
+Requires:	avahi-devel >= 0.6
 Requires:	gtk-doc-common
-#Requires:	howl-devel >= 0.9.10
 Requires:	libbonobo-devel >= 2.10.1
 Requires:	openssl-devel >= 0.9.7d
 
@@ -122,6 +117,7 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__autoconf}
 %{__automake}
 %configure \
+	--disable-howl \
 	--disable-schemas-install \
 	--enable-gnome-mount \
 	--enable-gtk-doc \
