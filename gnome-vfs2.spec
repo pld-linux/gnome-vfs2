@@ -198,13 +198,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
 %{_desktopdir}/*.list
 
-%files devel
+%files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so.*.*
 
-%files libs
+%files devel
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/gnome-vfs-2.0
