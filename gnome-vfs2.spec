@@ -1,8 +1,8 @@
-Summary:	GNOME2 - virtual file system
-Summary(pl):	GNOME2 - wirtualny system plików
+Summary:	GNOME - virtual file system
+Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.13.91
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
@@ -46,26 +46,38 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2
 Requires:	storage-methods
-Requires:	hal-libs >= 0.5.6
-Requires:	libbonobo >= 2.10.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
 Conflicts:	gnome-vfs2-module-menu <= 0.8-1
 Conflicts:	libgnome < 2.5.1
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GNOME Virtual File System library.
+GNOME Virtual File System.
 
 %description -l pl
-Biblioteka Wirtualnego Systemu Plików GNOME.
+Wirtualny Systemu Plików GNOME.
+
+%package libs
+Summary:	gnome-vfs library
+Summary(pl):	Biblioteka gnome-vfs
+Group:		Development/Libraries
+Requires:	hal-libs >= 0.5.6
+Requires:	libbonobo >= 2.10.1
+
+%description libs
+This package contains gnome-vfs libraries.
+
+%description libs -l pl
+Pakiet zawiera biblioteki gnome-vfs.
 
 %package devel
 Summary:	gnome-vfs - header files
 Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.12.0
 Requires:	avahi-devel >= 0.6
 Requires:	gtk-doc-common
@@ -149,7 +161,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %gconf_schema_install desktop_default_applications.schemas
 %gconf_schema_install desktop_gnome_url_handlers.schemas
 %gconf_schema_install system_dns_sd.schemas
@@ -165,7 +176,8 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall system_smb.schemas
 %gconf_schema_uninstall system_storage.schemas
 
-%postun -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files -f gnome-vfs-2.0.lang
 %defattr(644,root,root,755)
@@ -179,7 +191,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/system_storage.schemas
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
-%attr(755,root,root) %{_libdir}/*.so.*.*
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
@@ -189,6 +200,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so.*.*
+
+%files libs
+%defattr(644,root,root,755)
+
 %attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
 %{_includedir}/gnome-vfs-2.0
