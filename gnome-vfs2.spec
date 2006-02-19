@@ -1,8 +1,12 @@
+#
+# Conditional build
+%bcond_with	gnome_mount	# enable gnome-mount support
+#
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.13.91
-Release:	3
+Release:	4
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
@@ -27,7 +31,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.9.3
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gnome-mount-devel
+%{?with_gnome_mount:BuildRequires:	gnome-mount-devel}
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
 BuildRequires:	hal-devel >= 0.5.6
@@ -131,7 +135,7 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %configure \
 	--disable-howl \
 	--disable-schemas-install \
-	--enable-gnome-mount \
+	--%{?with_gnome_mount:en}%{!?with_gnome_mount:dis}able-gnome-mount \
 	--enable-gtk-doc \
 	--enable-ipv6 \
 	--with-html-dir=%{_gtkdocdir}
