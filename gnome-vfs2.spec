@@ -1,12 +1,12 @@
 #
 # Conditional build
-%bcond_with	gnome_mount	# enable gnome-mount support
+%bcond_without	gnome_mount	# enable gnome-mount support
 #
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.13.91
-Release:	5
+Release:	5.1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
