@@ -5,12 +5,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.13.91
-Release:	5.1
+Version:	2.13.92
+Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	a4e5e5acc6d5ce030c22106b4e5be8ea
+# Source0-md5:	faff1305378d5aa1ac37c13c0788866f
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
