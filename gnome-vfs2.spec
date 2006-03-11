@@ -81,9 +81,9 @@ Summary:	gnome-vfs - header files
 Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	GConf2-devel >= 2.12.0
 Requires:	avahi-glib-devel >= 0.6
 Requires:	dbus-glib-devel >= 0.34
-Requires:	GConf2-devel >= 2.12.0
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.10.1
 Requires:	openssl-devel >= 0.9.7d
