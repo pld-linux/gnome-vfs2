@@ -29,7 +29,7 @@ BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
-BuildRequires:	hal-devel >= 0.5.6
+BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	intltool >= 0.34.2
 BuildRequires:	libbonobo-devel >= 2.10.1
