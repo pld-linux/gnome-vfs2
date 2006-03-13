@@ -1,16 +1,12 @@
-#
-# Conditional build
-%bcond_without	gnome_mount	# enable gnome-mount support
-#
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.13.92
-Release:	2
+Version:	2.14.0
+Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.13/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	faff1305378d5aa1ac37c13c0788866f
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	f45ff7d95f7adf49d5abe13f744f5545
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -31,7 +27,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.9.3
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-doc-tools
-%{?with_gnome_mount:BuildRequires:	gnome-mount-devel}
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
 BuildRequires:	hal-devel >= 0.5.6
@@ -135,7 +130,6 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %configure \
 	--disable-howl \
 	--disable-schemas-install \
-	--%{?with_gnome_mount:en}%{!?with_gnome_mount:dis}able-gnome-mount \
 	--enable-gtk-doc \
 	--enable-ipv6 \
 	--with-html-dir=%{_gtkdocdir}
@@ -170,7 +164,6 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install system_dns_sd.schemas
 %gconf_schema_install system_http_proxy.schemas
 %gconf_schema_install system_smb.schemas
-%gconf_schema_install system_storage.schemas
 
 %preun
 %gconf_schema_uninstall desktop_default_applications.schemas
@@ -178,7 +171,6 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall system_dns_sd.schemas
 %gconf_schema_uninstall system_http_proxy.schemas
 %gconf_schema_uninstall system_smb.schemas
-%gconf_schema_uninstall system_storage.schemas
 
 %post	libs -p /sbin/ldconfig
 %postun libs -p /sbin/ldconfig
@@ -192,7 +184,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/system_dns_sd.schemas
 %{_sysconfdir}/gconf/schemas/system_http_proxy.schemas
 %{_sysconfdir}/gconf/schemas/system_smb.schemas
-%{_sysconfdir}/gconf/schemas/system_storage.schemas
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %dir %{_libdir}/gnome-vfs-2.0
