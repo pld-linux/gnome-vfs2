@@ -61,7 +61,7 @@ Wirtualny Systemu Plików GNOME.
 %package libs
 Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
-Group:		Development/Libraries
+Group:		Libraries
 Requires:	hal-libs >= 0.5.6
 Requires:	libbonobo >= 2.10.1
 
@@ -102,13 +102,13 @@ This package contains static gnome-vfs libraries.
 Pakiet ten zawiera biblioteki statyczne gnome-vfs.
 
 %package apidocs
-Summary:	gnome-vfs API documetation
+Summary:	gnome-vfs API documentation
 Summary(pl):	Dokumentacja API gnome-vfs
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
-gnome-vfs API documetation.
+gnome-vfs API documentation.
 
 %description apidocs -l pl
 Dokumentacja API gnome-vfs.
