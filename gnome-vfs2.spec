@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.14.0
+Version:	2.14.1
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	f45ff7d95f7adf49d5abe13f744f5545
+# Source0-md5:	d7ba7e667b46b5929b3e277a8b870868
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -123,6 +123,8 @@ Dokumentacja API gnome-vfs.
 %build
 # force rebuild
 touch libgnomevfs/GNOME_VFS_Daemon.idl
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -148,8 +150,6 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
