@@ -63,7 +63,7 @@ Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
 Group:		Libraries
 Requires:	hal-libs >= 0.5.6
-Requires:	libbonobo >= 2.10.1
+Requires:	libbonobo >= 2.14.0
 
 %description libs
 This package contains gnome-vfs libraries.
@@ -80,7 +80,7 @@ Requires:	GConf2-devel >= 2.12.0
 Requires:	avahi-glib-devel >= 0.6
 Requires:	dbus-glib-devel >= 0.34
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.10.1
+Requires:	libbonobo-devel >= 2.14.0
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
