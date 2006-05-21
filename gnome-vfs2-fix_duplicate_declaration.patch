@@ -1,0 +1,15 @@
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/libgnomevfs/gnome-vfs-result.c,v
+retrieving revision 1.31
+retrieving revision 1.31.4.1
+diff -u -r1.31 -r1.31.4.1
+--- gnome-vfs-result.c	2005/11/14 11:41:13	1.31
++++ libgnomevfs/gnome-vfs-result.c	2006/04/21 08:24:27	1.31.4.1
+@@ -87,7 +87,6 @@
+ 	/* GNOME_VFS_ERROR_LAUNCH */			N_("Error launching command"),
+ 	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached"),
+ 	/* GNOME_VFS_ERROR_NAMESERVER */                N_("Nameserver error"),
+-	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached"),
+  	/* GNOME_VFS_ERROR_LOCKED */			N_("The resource is locked"),
+ 	/* GNOME_VFS_ERROR_DEPRECATED_FUNCTION */       N_("Function call deprecated")
+ };
