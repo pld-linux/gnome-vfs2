@@ -1,8 +1,7 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
-Name:		gnome-vfs2
 Version:	2.14.1
-Release:	1
+Release:	7
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-%{version}.tar.bz2
@@ -12,20 +11,31 @@ Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-disable_cdda.patch
 Patch3:		%{name}-default_cdda_handler.patch
+Patch4:		%{name}-all_drives_for_computer.patch
+Patch5:		%{name}-df_not_null.patch
+Patch6:		%{name}-dont_eject_null.patch
+Patch7:		%{name}-dont_loop_if_no_anonymous_ftp.patch
+Patch8:		%{name}-fix_duplicate_declaration.patch
+Patch9:		%{name}-fix_parameters_for_desktop.patch
+Patch10:	%{name}-fix_volumes_sorting.patch
+Patch11:	%{name}-only_non_automounted_listed.patch
+Patch12:	%{name}-unaliase_mimetype.patch
+Patch13:	%{name}-smb_cache_lookup_fix.patch
+Patch14:	%{name}-ftp_ls_parse_fix.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.12.0
-BuildRequires:	ORBit2-devel >= 1:2.12.3
+BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	avahi-glib-devel >= 0.6
 BuildRequires:	bzip2-devel
-BuildRequires:	dbus-glib-devel >= 0.34
+BuildRequires:	dbus-glib-devel >= 0.60
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.9.3
-BuildRequires:	gnome-common >= 2.8.0
+BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	gtk-doc >= 1.4
@@ -43,7 +53,9 @@ BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
-Requires(post,preun):	GConf2
+Requires(post,preun):	GConf2 >= 2.14.0
+Requires:	ORBit2 >= 1:2.14.0
+Requires:	libbonobo >= 2.14.0
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -76,7 +88,7 @@ Summary:	gnome-vfs - header files
 Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.12.0
+Requires:	GConf2-devel >= 2.14.0
 Requires:	avahi-glib-devel >= 0.6
 Requires:	dbus-glib-devel >= 0.34
 Requires:	gtk-doc-common
@@ -119,6 +131,17 @@ Dokumentacja API gnome-vfs.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p0
+%patch7 -p1
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
+%patch12 -p1
+%patch13 -p0
+%patch14 -p1
 
 %build
 # force rebuild
