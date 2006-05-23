@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.14.1
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-%{version}.tar.bz2
@@ -21,6 +21,8 @@ Patch9:		%{name}-fix_parameters_for_desktop.patch
 Patch10:	%{name}-fix_volumes_sorting.patch
 Patch11:	%{name}-only_non_automounted_listed.patch
 Patch12:	%{name}-unaliase_mimetype.patch
+Patch13:	%{name}-smb_cache_lookup_fix.patch
+Patch14:	%{name}-ftp_ls_parse_fix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -139,6 +141,8 @@ Dokumentacja API gnome-vfs.
 %patch10 -p0
 %patch11 -p0
 %patch12 -p1
+%patch13 -p0
+%patch14 -p1
 
 %build
 # force rebuild
