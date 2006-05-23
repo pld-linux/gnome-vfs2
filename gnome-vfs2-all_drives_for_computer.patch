@@ -1,0 +1,49 @@
+===================================================================
+RCS file: /cvs/gnome/gnome-vfs/modules/computer-method.c,v
+retrieving revision 1.10
+retrieving revision 1.10.6.1
+diff -u -r1.10 -r1.10.6.1
+--- computer-method.c	2005/05/08 13:04:05	1.10
++++ gnome-vfs/modules/computer-method.c	2006/05/16 10:46:38	1.10.6.1
+@@ -312,14 +312,12 @@
+ 	char *name;
+ 	
+ 	G_LOCK (root_dir);
+-	if (gnome_vfs_drive_is_user_visible (drive)) {
+-		file = computer_file_new (COMPUTER_DRIVE);
+-		name = gnome_vfs_drive_get_display_name (drive);
+-		file->file_name = build_file_name (name, ".drive");
+-		g_free (name);
+-		file->drive = gnome_vfs_drive_ref (drive);
+-		computer_file_add (dir, file);
+-	}
++	file = computer_file_new (COMPUTER_DRIVE);
++	name = gnome_vfs_drive_get_display_name (drive);
++	file->file_name = build_file_name (name, ".drive");
++	g_free (name);
++	file->drive = gnome_vfs_drive_ref (drive);
++	computer_file_add (dir, file);
+ 	G_UNLOCK (root_dir);
+ }
+ 
+@@ -370,14 +368,12 @@
+ 	
+ 	for (l = drives; l != NULL; l = l->next) {
+ 		drive = l->data;
+-		if (gnome_vfs_drive_is_user_visible (drive)) {
+-			file = computer_file_new (COMPUTER_DRIVE);
+-			name = gnome_vfs_drive_get_display_name (drive);
+-			file->file_name = build_file_name (name, ".drive");
+-			g_free (name);
+-			file->drive = gnome_vfs_drive_ref (drive);
+-			computer_file_add (dir, file);
+-		}
++		file = computer_file_new (COMPUTER_DRIVE);
++		name = gnome_vfs_drive_get_display_name (drive);
++		file->file_name = build_file_name (name, ".drive");
++		g_free (name);
++		file->drive = gnome_vfs_drive_ref (drive);
++		computer_file_add (dir, file);
+ 	}
+ 	
+ 	for (l = volumes; l != NULL; l = l->next) {
