@@ -1,28 +1,17 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.14.1
-Release:	6
+Version:	2.14.2
+Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.14/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	d7ba7e667b46b5929b3e277a8b870868
+# Source0-md5:	b657e31974d6981adf9b2c4db981f62c
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-disable_cdda.patch
 Patch3:		%{name}-default_cdda_handler.patch
-Patch4:		%{name}-all_drives_for_computer.patch
-Patch5:		%{name}-df_not_null.patch
-Patch6:		%{name}-dont_eject_null.patch
-Patch7:		%{name}-dont_loop_if_no_anonymous_ftp.patch
-Patch8:		%{name}-fix_duplicate_declaration.patch
-Patch9:		%{name}-fix_parameters_for_desktop.patch
-Patch10:	%{name}-fix_volumes_sorting.patch
-Patch11:	%{name}-only_non_automounted_listed.patch
-Patch12:	%{name}-unaliase_mimetype.patch
-Patch13:	%{name}-smb_cache_lookup_fix.patch
-Patch14:	%{name}-ftp_ls_parse_fix.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -35,10 +24,10 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.9.3
+BuildRequires:	glib2-devel >= 1:2.10.3
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gtk+2-devel >= 2:2.6.3
+BuildRequires:	gtk+2-devel >= 2:2.8.18
 BuildRequires:	gtk-doc >= 1.4
 BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
@@ -132,17 +121,6 @@ Dokumentacja API gnome-vfs.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p0
-%patch7 -p1
-%patch8 -p0
-%patch9 -p0
-%patch10 -p0
-%patch11 -p0
-%patch12 -p1
-%patch13 -p0
-%patch14 -p1
 
 %build
 # force rebuild
