@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.15.1
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
@@ -187,8 +187,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/system_smb.schemas
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
-%dir %{_libdir}/gnome-vfs-2.0
-%dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
@@ -197,6 +195,8 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so.*.*
+%dir %{_libdir}/gnome-vfs-2.0
+%dir %{_libdir}/gnome-vfs-2.0/modules
 
 %files devel
 %defattr(644,root,root,755)
