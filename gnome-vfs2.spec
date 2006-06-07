@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.15.1
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
@@ -23,10 +23,10 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.11.1
+BuildRequires:	glib2-devel >= 1:2.11.2
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gtk+2-devel >= 2:2.9.1
+BuildRequires:	gtk+2-devel >= 2:2.9.2
 BuildRequires:	gtk-doc >= 1.4
 BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
@@ -34,7 +34,7 @@ BuildRequires:	intltool >= 0.34.2
 BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
-BuildRequires:	libxml2-devel >= 2.6.21
+BuildRequires:	libxml2-devel >= 2.6.25
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -123,6 +123,7 @@ Dokumentacja API gnome-vfs.
 %build
 # force rebuild
 touch libgnomevfs/GNOME_VFS_Daemon.idl
+%{__gtkdocize}
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
@@ -150,9 +151,6 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
-
-# remove unsupported locale
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/zh_HK
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
