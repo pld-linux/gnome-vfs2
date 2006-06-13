@@ -1,40 +1,42 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.15.1
-Release:	3
+Version:	2.15.2
+Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	1c38e19011530fbc28b52d2cfcab8e62
+# Source0-md5:	a2bfa7c76d77d777589995634051b293
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
+Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
+BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel >= 0.6
+BuildRequires:	avahi-glib-devel >= 0.6.10
 BuildRequires:	bzip2-devel
-BuildRequires:	dbus-glib-devel >= 0.60
+BuildRequires:	dbus-glib-devel >= 0.62
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.11.2
+BuildRequires:	glib2-devel >= 1:2.11.3
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk+2-devel >= 2:2.9.2
-BuildRequires:	gtk-doc >= 1.4
+BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
-BuildRequires:	libxml2-devel >= 2.6.25
+BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -63,7 +65,7 @@ Wirtualny Systemu Plików GNOME.
 Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
 Group:		Libraries
-Requires:	hal-libs >= 0.5.6
+Requires:	hal-libs >= 0.5.7
 Requires:	libbonobo >= 2.14.0
 
 %description libs
@@ -78,8 +80,8 @@ Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.14.0
-Requires:	avahi-glib-devel >= 0.6
-Requires:	dbus-glib-devel >= 0.34
+Requires:	avahi-glib-devel >= 0.6.10
+Requires:	dbus-glib-devel >= 0.62
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.14.0
 Requires:	openssl-devel >= 0.9.7d
@@ -119,6 +121,7 @@ Dokumentacja API gnome-vfs.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 %build
 # force rebuild
