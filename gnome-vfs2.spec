@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.15.2
+Version:	2.15.3
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	a2bfa7c76d77d777589995634051b293
+# Source0-md5:	f7eb8f2c658d6c8dfc34b5a2161e6890
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -25,15 +25,14 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.11.3
+BuildRequires:	glib2-devel >= 1:2.12.0
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	gtk+2-devel >= 2:2.10.0
 BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libbonobo-devel >= 2.14.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
 BuildRequires:	libxml2-devel >= 1:2.6.26
@@ -46,7 +45,6 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires:	ORBit2 >= 1:2.14.0
-Requires:	libbonobo >= 2.14.0
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -66,7 +64,6 @@ Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
 Group:		Libraries
 Requires:	hal-libs >= 0.5.7
-Requires:	libbonobo >= 2.14.0
 
 %description libs
 This package contains gnome-vfs libraries.
@@ -83,7 +80,6 @@ Requires:	GConf2-devel >= 2.14.0
 Requires:	avahi-glib-devel >= 0.6.10
 Requires:	dbus-glib-devel >= 0.62
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.14.0
 Requires:	openssl-devel >= 0.9.7d
 
 %description devel
@@ -133,6 +129,7 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--disable-howl \
 	--disable-schemas-install \
@@ -152,7 +149,7 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 # no static modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/{gnome-vfs-2.0/modules,bonobo/monikers}/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-vfs-2.0/modules/*.{la,a}
 rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
@@ -191,8 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-*
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
-%{_libdir}/bonobo/servers/*
-%attr(755,root,root) %{_libdir}/bonobo/monikers/*.so
+%{_datadir}/dbus-1/services/*.service
 %{_desktopdir}/*.list
 
 %files libs
