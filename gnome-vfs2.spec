@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.15.3
+Version:	2.15.90
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	f7eb8f2c658d6c8dfc34b5a2161e6890
+# Source0-md5:	5922610d181ec7a8b35aeb826dbe107d
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -14,21 +14,21 @@ Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
-BuildRequires:	ORBit2-devel >= 1:2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.1
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel >= 0.6.10
+BuildRequires:	avahi-glib-devel >= 0.6.11
 BuildRequires:	bzip2-devel
 BuildRequires:	dbus-glib-devel >= 0.62
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools
-BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	hal-devel >= 0.5.7
 BuildRequires:	heimdal-devel >= 0.7
@@ -44,7 +44,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2 >= 2.14.0
-Requires:	ORBit2 >= 1:2.14.0
+Requires:	ORBit2 >= 1:2.14.1
 Requires:	shared-mime-info >= 0.15
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -77,7 +77,7 @@ Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.14.0
-Requires:	avahi-glib-devel >= 0.6.10
+Requires:	avahi-glib-devel >= 0.6.11
 Requires:	dbus-glib-devel >= 0.62
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.7d
@@ -129,7 +129,6 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--disable-howl \
 	--disable-schemas-install \
