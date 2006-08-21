@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.15.91
+Version:	2.15.92
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	60a7a63b8ecdc04d13f9f9de0714205a
+# Source0-md5:	0c29a32fb67d4fbb2580ac6b35432657
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -25,10 +25,10 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.1
+BuildRequires:	glib2-devel >= 1:2.12.2
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools >= 0.7.2
-BuildRequires:	gtk+2-devel >= 2:2.10.1
+BuildRequires:	gtk+2-devel >= 2:2.10.2
 BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	heimdal-devel >= 0.7
@@ -45,7 +45,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires:	ORBit2 >= 1:2.14.2
-Requires:	shared-mime-info >= 0.15
+Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
 Conflicts:	gnome-vfs2-module-menu <= 0.8-1
