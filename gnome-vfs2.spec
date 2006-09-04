@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.15.92
+Version:	2.16.0
 Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.15/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	0c29a32fb67d4fbb2580ac6b35432657
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	fdea9d7be42320c3fa6a09e645613480
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -14,18 +14,18 @@ Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
-BuildRequires:	ORBit2-devel >= 1:2.14.2
+BuildRequires:	ORBit2-devel >= 1:2.14.3
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel >= 0.6.12
+BuildRequires:	avahi-glib-devel >= 0.6.13
 BuildRequires:	bzip2-devel
 BuildRequires:	dbus-glib-devel >= 0.71
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.2
+BuildRequires:	glib2-devel >= 1:2.12.3
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools >= 0.7.2
 BuildRequires:	gtk+2-devel >= 2:2.10.2
@@ -44,7 +44,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2 >= 2.14.0
-Requires:	ORBit2 >= 1:2.14.2
+Requires:	ORBit2 >= 1:2.14.3
 Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -77,7 +77,7 @@ Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.14.0
-Requires:	avahi-glib-devel >= 0.6.12
+Requires:	avahi-glib-devel >= 0.6.13
 Requires:	dbus-glib-devel >= 0.71
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.8b
