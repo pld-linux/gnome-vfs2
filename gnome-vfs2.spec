@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.16.0
+Version:	2.16.1
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	fdea9d7be42320c3fa6a09e645613480
+# Source0-md5:	2d9f7b01496ecc227015bc7a08fb798f
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -18,17 +18,17 @@ BuildRequires:	ORBit2-devel >= 1:2.14.3
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel >= 0.6.13
+BuildRequires:	avahi-glib-devel >= 0.6.14
 BuildRequires:	bzip2-devel
 BuildRequires:	dbus-glib-devel >= 0.71
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.3
+BuildRequires:	glib2-devel >= 1:2.12.4
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools >= 0.7.2
-BuildRequires:	gtk+2-devel >= 2:2.10.2
+BuildRequires:	gtk+2-devel >= 2:2.10.5
 BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	heimdal-devel >= 0.7
@@ -77,7 +77,7 @@ Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.14.0
-Requires:	avahi-glib-devel >= 0.6.13
+Requires:	avahi-glib-devel >= 0.6.14
 Requires:	dbus-glib-devel >= 0.71
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.8b
