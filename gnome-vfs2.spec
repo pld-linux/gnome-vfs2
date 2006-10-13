@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.16.1
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-%{version}.tar.bz2
@@ -63,7 +63,7 @@ Wirtualny Systemu Plików GNOME.
 Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
 Group:		Libraries
-Requires:	hal-libs >= 0.5.7.1
+Requires:	hal-libs >= 0.5.7.2
 
 %description libs
 This package contains gnome-vfs libraries.
@@ -81,6 +81,7 @@ Requires:	avahi-glib-devel >= 0.6.14
 Requires:	dbus-glib-devel >= 0.71
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.8b
+Requires:	popt-devel
 
 %description devel
 This package contains header files for gnome-vfs library.
