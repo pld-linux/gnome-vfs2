@@ -63,7 +63,7 @@ Wirtualny Systemu Plików GNOME.
 Summary:	gnome-vfs library
 Summary(pl):	Biblioteka gnome-vfs
 Group:		Libraries
-Requires:	hal-libs >= 0.5.7.2
+Requires:	hal-libs >= 0.5.7.1
 
 %description libs
 This package contains gnome-vfs libraries.
