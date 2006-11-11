@@ -1,19 +1,19 @@
 Summary:	GNOME - virtual file system
 Summary(pl):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.16.1
-Release:	2
+Version:	2.16.2
+Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	2d9f7b01496ecc227015bc7a08fb798f
+# Source0-md5:	1ad3988f374012f233973188ce518ae8
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	GConf2-devel >= 2.16.0
 BuildRequires:	ORBit2-devel >= 1:2.14.3
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
@@ -28,14 +28,14 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.12.4
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools >= 0.7.2
-BuildRequires:	gtk+2-devel >= 2:2.10.5
+BuildRequires:	gtk+2-devel >= 2:2.10.6
 BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	heimdal-devel >= 0.7
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
-BuildRequires:	libxml2-devel >= 1:2.6.26
+BuildRequires:	libxml2-devel >= 1:2.6.27
 BuildRequires:	openssl-devel >= 0.9.8b
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -43,7 +43,7 @@ BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
-Requires(post,preun):	GConf2 >= 2.14.0
+Requires(post,preun):	GConf2 >= 2.16.0
 Requires:	ORBit2 >= 1:2.14.3
 Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
@@ -76,7 +76,7 @@ Summary:	gnome-vfs - header files
 Summary(pl):	gnome-vfs - pliki nag³ówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.14.0
+Requires:	GConf2-devel >= 2.16.0
 Requires:	avahi-glib-devel >= 0.6.14
 Requires:	dbus-glib-devel >= 0.71
 Requires:	gtk-doc-common
