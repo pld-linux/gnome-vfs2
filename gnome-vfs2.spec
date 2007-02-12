@@ -1,5 +1,5 @@
 Summary:	GNOME - virtual file system
-Summary(pl):	GNOME - wirtualny system plik體
+Summary(pl.UTF-8):   GNOME - wirtualny system plik贸w
 Name:		gnome-vfs2
 Version:	2.16.3
 Release:	2
@@ -56,24 +56,24 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 GNOME Virtual File System.
 
-%description -l pl
-Wirtualny Systemu Plik體 GNOME.
+%description -l pl.UTF-8
+Wirtualny Systemu Plik贸w GNOME.
 
 %package libs
 Summary:	gnome-vfs library
-Summary(pl):	Biblioteka gnome-vfs
+Summary(pl.UTF-8):   Biblioteka gnome-vfs
 Group:		Libraries
 Requires:	hal-libs >= 0.5.7.1
 
 %description libs
 This package contains gnome-vfs libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Pakiet zawiera biblioteki gnome-vfs.
 
 %package devel
 Summary:	gnome-vfs - header files
-Summary(pl):	gnome-vfs - pliki nag丑wkowe
+Summary(pl.UTF-8):   gnome-vfs - pliki nag艂贸wkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.16.0
@@ -86,31 +86,31 @@ Requires:	popt-devel
 %description devel
 This package contains header files for gnome-vfs library.
 
-%description devel -l pl
-Pakiet ten zawiera pliki nag丑wkowe biblioteki gnome-vfs.
+%description devel -l pl.UTF-8
+Pakiet ten zawiera pliki nag艂贸wkowe biblioteki gnome-vfs.
 
 %package static
 Summary:	gnome-vfs - static libraries
-Summary(pl):	gnome-vfs - biblioteki statyczne
+Summary(pl.UTF-8):   gnome-vfs - biblioteki statyczne
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains static gnome-vfs libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Pakiet ten zawiera biblioteki statyczne gnome-vfs.
 
 %package apidocs
 Summary:	gnome-vfs API documentation
-Summary(pl):	Dokumentacja API gnome-vfs
+Summary(pl.UTF-8):   Dokumentacja API gnome-vfs
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 gnome-vfs API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API gnome-vfs.
 
 %prep
