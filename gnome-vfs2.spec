@@ -1,5 +1,5 @@
 Summary:	GNOME - virtual file system
-Summary(pl.UTF-8):   GNOME - wirtualny system plików
+Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.16.3
 Release:	2
@@ -61,7 +61,7 @@ Wirtualny Systemu Plików GNOME.
 
 %package libs
 Summary:	gnome-vfs library
-Summary(pl.UTF-8):   Biblioteka gnome-vfs
+Summary(pl.UTF-8):	Biblioteka gnome-vfs
 Group:		Libraries
 Requires:	hal-libs >= 0.5.7.1
 
@@ -73,7 +73,7 @@ Pakiet zawiera biblioteki gnome-vfs.
 
 %package devel
 Summary:	gnome-vfs - header files
-Summary(pl.UTF-8):   gnome-vfs - pliki nagłówkowe
+Summary(pl.UTF-8):	gnome-vfs - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.16.0
@@ -91,7 +91,7 @@ Pakiet ten zawiera pliki nagłówkowe biblioteki gnome-vfs.
 
 %package static
 Summary:	gnome-vfs - static libraries
-Summary(pl.UTF-8):   gnome-vfs - biblioteki statyczne
+Summary(pl.UTF-8):	gnome-vfs - biblioteki statyczne
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -103,7 +103,7 @@ Pakiet ten zawiera biblioteki statyczne gnome-vfs.
 
 %package apidocs
 Summary:	gnome-vfs API documentation
-Summary(pl.UTF-8):   Dokumentacja API gnome-vfs
+Summary(pl.UTF-8):	Dokumentacja API gnome-vfs
 Group:		Documentation
 Requires:	gtk-doc-common
 
