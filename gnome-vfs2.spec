@@ -1,56 +1,54 @@
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.16.3
-Release:	2
+Version:	2.17.91
+Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.16/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	586d6fe3740385c000a864d5e2cf8215
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.17/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	3f5d5257c84bbfe6deeef41c34855645
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.16.0
-BuildRequires:	ORBit2-devel >= 1:2.14.3
+BuildRequires:	GConf2-devel >= 2.16.1
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	avahi-glib-devel >= 0.6.14
+BuildRequires:	avahi-glib-devel >= 0.6.17
 BuildRequires:	bzip2-devel
-BuildRequires:	dbus-glib-devel >= 0.71
+BuildRequires:	dbus-glib-devel >= 0.73
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.4
+BuildRequires:	glib2-devel >= 1:2.12.9
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-doc-tools >= 0.7.2
-BuildRequires:	gtk+2-devel >= 2:2.10.6
-BuildRequires:	gtk-doc >= 1.7
+BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	heimdal-devel >= 0.7
-BuildRequires:	intltool >= 0.35.0
+BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
 BuildRequires:	libxml2-devel >= 1:2.6.27
 BuildRequires:	openssl-devel >= 0.9.8b
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
-Requires(post,preun):	GConf2 >= 2.16.0
-Requires:	ORBit2 >= 1:2.14.3
+Requires(post,preun):	GConf2 >= 2.16.1
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	ORBit2 >= 1:2.14.7
 Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
 Conflicts:	gnome-vfs2-module-menu <= 0.8-1
 Conflicts:	libgnome < 2.5.1
-Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,12 +74,11 @@ Summary:	gnome-vfs - header files
 Summary(pl.UTF-8):	gnome-vfs - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.16.0
-Requires:	avahi-glib-devel >= 0.6.14
-Requires:	dbus-glib-devel >= 0.71
+Requires:	GConf2-devel >= 2.16.1
+Requires:	avahi-glib-devel >= 0.6.17
+Requires:	dbus-glib-devel >= 0.73
 Requires:	gtk-doc-common
 Requires:	openssl-devel >= 0.9.8b
-Requires:	popt-devel
 
 %description devel
 This package contains header files for gnome-vfs library.
@@ -136,7 +133,7 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 	--enable-gtk-doc \
 	--enable-ipv6 \
 	--with-html-dir=%{_gtkdocdir}
-	
+
 %{__make}
 
 %install
