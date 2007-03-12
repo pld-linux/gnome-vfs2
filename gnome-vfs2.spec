@@ -6,7 +6,7 @@ Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.18/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	3f5d5257c84bbfe6deeef41c34855645
+# Source0-md5:	fba4adfc57e2267405c9932e7515ef03
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
