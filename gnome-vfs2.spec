@@ -32,6 +32,7 @@ BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	hal-devel >= 0.5.7.1
 BuildRequires:	krb5-devel
 BuildRequires:	intltool >= 0.35.5
+BuildRequires:	libselinux-devel
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
 BuildRequires:	libxml2-devel >= 1:2.6.27
@@ -78,6 +79,7 @@ Requires:	GConf2-devel >= 2.18.0.1
 Requires:	avahi-glib-devel >= 0.6.17
 Requires:	dbus-glib-devel >= 0.73
 Requires:	gtk-doc-common
+Requires:	libselinux-devel
 Requires:	openssl-devel >= 0.9.8b
 
 %description devel
