@@ -1,20 +1,20 @@
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.18.1
+Version:	2.19.91
 Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-vfs/2.18/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	bf4a6d95180d05981893e5d021c6695c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.19/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	6a08abf1f6f0188d7f4ae1e21a9b9551
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.18.0.1
-BuildRequires:	ORBit2-devel >= 1:2.14.7
+BuildRequires:	GConf2-devel >= 2.19.1
+BuildRequires:	ORBit2-devel >= 1:2.14.8
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,17 +25,17 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.12.11
+BuildRequires:	glib2-devel >= 1:2.14.0
 BuildRequires:	gnome-common >= 2.18.0
-BuildRequires:	gnome-doc-tools >= 0.10.3
+BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	hal-devel >= 0.5.7.1
+BuildRequires:	hal-devel >= 0.5.9
 BuildRequires:	krb5-devel
-BuildRequires:	intltool >= 0.35.5
+BuildRequires:	intltool >= 0.36.1
 BuildRequires:	libselinux-devel
 BuildRequires:	libsmbclient-devel >= 3.0
 BuildRequires:	libtool >= 2:1.5.14
-BuildRequires:	libxml2-devel >= 1:2.6.27
+BuildRequires:	libxml2-devel >= 1:2.6.29
 BuildRequires:	openssl-devel >= 0.9.8b
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -44,7 +44,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	ORBit2 >= 1:2.14.7
+Requires:	ORBit2 >= 1:2.14.8
 Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
@@ -62,7 +62,7 @@ Wirtualny Systemu Plików GNOME.
 Summary:	gnome-vfs library
 Summary(pl.UTF-8):	Biblioteka gnome-vfs
 Group:		Libraries
-Requires:	hal-libs >= 0.5.7.1
+Requires:	hal-libs >= 0.5.9
 
 %description libs
 This package contains gnome-vfs libraries.
@@ -75,7 +75,7 @@ Summary:	gnome-vfs - header files
 Summary(pl.UTF-8):	gnome-vfs - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.18.0.1
+Requires:	GConf2-devel >= 2.19.1
 Requires:	avahi-glib-devel >= 0.6.17
 Requires:	dbus-glib-devel >= 0.73
 Requires:	gtk-doc-common
