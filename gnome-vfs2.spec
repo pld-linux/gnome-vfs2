@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.20.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.20/gnome-vfs-%{version}.tar.bz2
@@ -48,6 +48,8 @@ Requires:	ORBit2 >= 1:2.14.9
 Requires:	shared-mime-info >= 0.18
 Obsoletes:	gnome-vfs-extras
 Obsoletes:	gnome-vfs2-vfolder-menu
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 Conflicts:	gnome-vfs2-module-menu <= 0.8-1
 Conflicts:	libgnome < 2.5.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -153,6 +155,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
+[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
+	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang gnome-vfs-2.0
 
 %clean
