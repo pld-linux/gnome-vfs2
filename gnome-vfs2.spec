@@ -1,19 +1,19 @@
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.20.0
-Release:	2
+Version:	2.20.1
+Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.20/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	b9fe0a066d0e693e74a000e55338235b
+# Source0-md5:	a350a5a3e201951d7e7867d0900df423
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.19.1
+BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
@@ -77,7 +77,7 @@ Summary:	gnome-vfs - header files
 Summary(pl.UTF-8):	gnome-vfs - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.19.1
+Requires:	GConf2-devel >= 2.20.0
 Requires:	avahi-glib-devel >= 0.6.17
 Requires:	dbus-glib-devel >= 0.73
 Requires:	gtk-doc-common
@@ -121,6 +121,9 @@ Dokumentacja API gnome-vfs.
 %patch2 -p1
 %patch3 -p0
 
+sed -i -e s#sr\@Latn#sr\@latin# po/LINGUAS
+mv po/sr\@{Latn,latin}.po
+
 %build
 # force rebuild
 touch libgnomevfs/GNOME_VFS_Daemon.idl
@@ -155,8 +158,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang gnome-vfs-2.0
 
 %clean
