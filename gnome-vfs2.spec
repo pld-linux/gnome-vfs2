@@ -1,19 +1,19 @@
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.20.1
+Version:	2.22.0
 Release:	1
 License:	LGPL v2+
 Group:		Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.20/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	a350a5a3e201951d7e7867d0900df423
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.22/gnome-vfs-%{version}.tar.bz2
+# Source0-md5:	369105fd82cb99e69e63acab8f3b89b7
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
 Patch2:		%{name}-default_cdda_handler.patch
 Patch3:		%{name}-headers-define.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.20.0
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
 BuildRequires:	acl-devel >= 2.2.34
 BuildRequires:	autoconf
@@ -25,8 +25,8 @@ BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.14.1
-BuildRequires:	gnome-common >= 2.18.0
+BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	hal-devel >= 0.5.9
@@ -77,7 +77,7 @@ Summary:	gnome-vfs - header files
 Summary(pl.UTF-8):	gnome-vfs - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	GConf2-devel >= 2.20.0
+Requires:	GConf2-devel >= 2.22.0
 Requires:	avahi-glib-devel >= 0.6.17
 Requires:	dbus-glib-devel >= 0.73
 Requires:	gtk-doc-common
@@ -121,8 +121,8 @@ Dokumentacja API gnome-vfs.
 %patch2 -p1
 %patch3 -p0
 
-sed -i -e s#sr\@Latn#sr\@latin# po/LINGUAS
-mv po/sr\@{Latn,latin}.po
+sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
+mv po/sr@{Latn,latin}.po
 
 %build
 # force rebuild
@@ -189,30 +189,52 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/system_dns_sd.schemas
 %{_sysconfdir}/gconf/schemas/system_http_proxy.schemas
 %{_sysconfdir}/gconf/schemas/system_smb.schemas
-%attr(755,root,root) %{_bindir}/gnomevfs-*
+%attr(755,root,root) %{_bindir}/gnomevfs-cat
+%attr(755,root,root) %{_bindir}/gnomevfs-copy
+%attr(755,root,root) %{_bindir}/gnomevfs-df
+%attr(755,root,root) %{_bindir}/gnomevfs-info
+%attr(755,root,root) %{_bindir}/gnomevfs-ls
+%attr(755,root,root) %{_bindir}/gnomevfs-mkdir
+%attr(755,root,root) %{_bindir}/gnomevfs-monitor
+%attr(755,root,root) %{_bindir}/gnomevfs-mv
+%attr(755,root,root) %{_bindir}/gnomevfs-rm
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
-%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/*.so
-%{_datadir}/dbus-1/services/*.service
-%{_desktopdir}/*.list
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbzip2.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libcomputer.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libdns-sd.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libfile.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libftp.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libgzip.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libhttp.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libnetwork.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libnntp.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libsftp.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libsmb.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libtar.so
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libvfs-test.so
+%{_datadir}/dbus-1/services/gnome-vfs-daemon.service
+%{_desktopdir}/defaults.list
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/libgnomevfs-2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnomevfs-2.so.0
 %dir %{_libdir}/gnome-vfs-2.0
 %dir %{_libdir}/gnome-vfs-2.0/modules
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libgnomevfs-2.so
+%{_libdir}/libgnomevfs-2.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/gnome-vfs-2.0.pc
+%{_pkgconfigdir}/gnome-vfs-module-2.0.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libgnomevfs-2.a
 
 %files apidocs
 %defattr(644,root,root,755)
