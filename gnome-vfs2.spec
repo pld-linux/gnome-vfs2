@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.22.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.22/gnome-vfs-%{version}.tar.bz2
@@ -198,7 +198,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-monitor
 %attr(755,root,root) %{_bindir}/gnomevfs-mv
 %attr(755,root,root) %{_bindir}/gnomevfs-rm
+%{_datadir}/dbus-1/services/gnome-vfs-daemon.service
+%{_desktopdir}/defaults.list
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnomevfs-2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnomevfs-2.so.0
+%dir %{_libdir}/gnome-vfs-2.0
+%dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-daemon
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libvfs-test.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbzip2.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libcomputer.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libdns-sd.so
@@ -212,15 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libsmb.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libtar.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libvfs-test.so
-%{_datadir}/dbus-1/services/gnome-vfs-daemon.service
-%{_desktopdir}/defaults.list
 
-%files libs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnomevfs-2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnomevfs-2.so.0
-%dir %{_libdir}/gnome-vfs-2.0
-%dir %{_libdir}/gnome-vfs-2.0/modules
 
 %files devel
 %defattr(644,root,root,755)
