@@ -27,7 +27,6 @@ BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-doc-tools
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	hal-devel >= 0.5.9
 BuildRequires:	krb5-devel
