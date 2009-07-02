@@ -29,7 +29,7 @@ BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	hal-devel >= 0.5.9
-BuildRequires:	krb5-devel
+BuildRequires:	heimdal-devel
 BuildRequires:	intltool >= 0.36.2
 BuildRequires:	libselinux-devel
 BuildRequires:	libsmbclient-devel >= 3.0
