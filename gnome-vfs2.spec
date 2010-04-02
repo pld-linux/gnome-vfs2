@@ -1,12 +1,12 @@
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
-Version:	2.24.2
+Version:	2.24.3
 Release:	1
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/gnome-vfs-%{version}.tar.bz2
-# Source0-md5:	371d13e7306eb82e3fe3748a7584c440
+# Source0-md5:	646a2672c6e7e4ebff6a798b0fb7cc90
 Source1:	%{name}-defaults.list
 Patch0:		%{name}-no_g_mime.patch
 Patch1:		%{name}-fstab_edit_crash.patch
@@ -40,6 +40,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
@@ -119,6 +120,9 @@ Dokumentacja API gnome-vfs.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
+
+sed -i -e 's/^en@shaw//' po/LINGUAS
+rm -f po/en@shaw.po
 
 %build
 # force rebuild
