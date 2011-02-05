@@ -154,7 +154,6 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 # no static modules
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-vfs-2.0/modules/*.{la,a}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
