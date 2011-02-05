@@ -2,7 +2,7 @@ Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.24.4
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/gnome-vfs-%{version}.tar.bz2
@@ -153,8 +153,9 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 # no static modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-vfs-2.0/modules/*.{la,a}
-rm -f $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-vfs-2.0/modules/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gtk-2.0/*/filesystems/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
@@ -225,7 +226,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnomevfs-2.so
-%{_libdir}/libgnomevfs-2.la
 %{_includedir}/gnome-vfs-2.0
 %{_includedir}/gnome-vfs-module-2.0
 %{_libdir}/gnome-vfs-2.0/include
