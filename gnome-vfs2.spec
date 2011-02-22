@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	hal		# build pmount-hal (HAL is deprecated)
+#
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
@@ -28,7 +32,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	hal-devel >= 0.5.9
+%{?with_hal:BuildRequires:	hal-devel >= 0.5.9}
 BuildRequires:	heimdal-devel
 BuildRequires:	intltool >= 0.36.2
 BuildRequires:	libselinux-devel
@@ -64,7 +68,7 @@ Wirtualny Systemu Plików GNOME.
 Summary:	gnome-vfs library
 Summary(pl.UTF-8):	Biblioteka gnome-vfs
 Group:		Libraries
-Requires:	hal-libs >= 0.5.9
+%{?with_hal:Requires:	hal-libs >= 0.5.9}
 
 %description libs
 This package contains gnome-vfs libraries.
@@ -135,6 +139,7 @@ touch libgnomevfs/GNOME_VFS_Daemon.idl
 %{__autoconf}
 %{__automake}
 %configure \
+	%{__enable_disable hal hal} \
 	--disable-howl \
 	--disable-schemas-install \
 	--enable-gtk-doc \
