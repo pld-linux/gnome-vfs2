@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	hal		# build pmount-hal (HAL is deprecated)
+%bcond_with	hal		# build with HAL support (HAL is deprecated)
 #
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.24.4
-Release:	6
+Release:	7
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/gnome-vfs-%{version}.tar.bz2
