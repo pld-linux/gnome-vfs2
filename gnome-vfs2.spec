@@ -125,9 +125,6 @@ Dokumentacja API gnome-vfs.
 %patch2 -p1
 %patch3 -p0
 
-sed -i -e 's/^en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
-
 %build
 # force rebuild
 touch libgnomevfs/GNOME_VFS_Daemon.idl
