@@ -1,0 +1,45 @@
+--- gnome-vfs-2.24.4/configure.in~	2011-08-03 12:25:39.350782218 +0200
++++ gnome-vfs-2.24.4/configure.in	2011-08-03 12:26:57.897782199 +0200
+@@ -565,14 +565,13 @@
+   if test "x${with_samba_libs}" != "xno" -a "x${have_samba_includes}" != "xno"; then
+ 	LDFLAGS_save="$LDFLAGS"
+ 	
+-	LDFLAGS="$LDFLAGS -L$with_samba_libs"
+ 	AC_CHECK_LIB(smbclient, smbc_new_context,samba_libs="yes", samba_libs="no")
+ 	LDFLAGS="$LDFLAGS_save"
+ 	if test "x${samba_libs}" != "xno"; then
+ 		AC_DEFINE(HAVE_SAMBA,, [Define to 1 if you have the samba 3.0 libraries])
+ 		msg_samba="yes"
+                 if test x$with_samba_libs != x/usr/lib; then
+-                        SAMBA_LIBS="-L$with_samba_libs -lsmbclient"
++                        SAMBA_LIBS="-lsmbclient"
+                 else
+                 	SAMBA_LIBS="-lsmbclient"
+                 fi
+@@ -641,7 +640,7 @@
+ 	[
+ dnl How can we test to see if we need to link to libld for sure?? 
+ dnl RedHat 6.2 seems to need to but Debian Woody doesn't
+-		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto -ldl"
++		LDFLAGS="$LDFLAGS -lssl -lcrypto -ldl"
+ 		AC_TRY_LINK_FUNC(SSL_read, openssl_libs="yes", openssl_libs="no")
+ 		LDFLAGS="$LDFLAGS_save"
+ 	])
+@@ -649,7 +648,7 @@
+ 		AC_DEFINE(HAVE_OPENSSL, 1, [Define to 1 if OpenSSL is available])
+ 		msg_openssl="yes"
+                 if test x$with_openssl_libs != x/usr/lib; then
+-                        OPENSSL_LIBS="-L$with_openssl_libs -lssl -lcrypto"
++                        OPENSSL_LIBS="-lssl -lcrypto"
+                 else
+                 	OPENSSL_LIBS="-lssl -lcrypto"
+                 fi
+@@ -1265,7 +1264,7 @@
+ [  --with-afs              support -fstype afs],
+ [  AC_DEFINE(AFS, [], [Define if you have the Andrew File System])
+   CPPFLAGS="$CPPFLAGS -I/usr/afsws/include"
+-  LIBS="$LIBS -L/usr/afsws/lib -L/usr/afsws/lib/afs -lsys -lrx -llwp"])
++  LIBS="$LIBS -lsys -lrx -llwp"])
+ 
+ AC_MSG_CHECKING(how to get filesystem type)
+ fstype=no
