@@ -1,0 +1,18 @@
+--- gnome-vfs-2.24.4/test/Makefile.am~	2013-12-07 15:34:53.000000000 +0100
++++ gnome-vfs-2.24.4/test/Makefile.am	2013-12-07 15:44:05.892645934 +0100
+@@ -58,13 +58,13 @@
+ TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
+ 		GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules \
+ 		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml \
+-		SRCDIR=$(srcdir)
++		SRCDIR=$(top_srcdir)/test
+ TESTS = test-acl	  \
+ 	test-address      \
+ 	test-async-cancel \
+ 	test-escape       \
+ 	test-uri       	  \
+-	$(srcdir)/auto-test	
++	auto-test	
+ 
+ libraries =						\
+ 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
