@@ -217,7 +217,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnomevfs-mv
 %attr(755,root,root) %{_bindir}/gnomevfs-rm
 %attr(755,root,root) %{_libexecdir}/gnome-vfs-daemon
-%dir %{_libdir}/gnome-vfs-2.0/modules
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbzip2.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libcomputer.so
 %attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libdns-sd.so
@@ -239,6 +238,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgnomevfs-2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnomevfs-2.so.0
 %dir %{_libdir}/gnome-vfs-2.0
+%dir %{_libdir}/gnome-vfs-2.0/modules
 
 %files devel
 %defattr(644,root,root,755)
