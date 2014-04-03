@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_with	hal		# build with HAL support (HAL is deprecated)
 %bcond_without	static_libs	# static library
-#
+
 Summary:	GNOME - virtual file system
 Summary(pl.UTF-8):	GNOME - wirtualny system plików
 Name:		gnome-vfs2
 Version:	2.24.4
-Release:	13
+Release:	14
 License:	LGPL v2+
 Group:		Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-vfs/2.24/gnome-vfs-%{version}.tar.bz2
@@ -118,6 +118,9 @@ Summary:	gnome-vfs API documentation
 Summary(pl.UTF-8):	Dokumentacja API gnome-vfs
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 gnome-vfs API documentation.
@@ -168,9 +171,9 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-vfs-2.0/modules/*.a
 %endif
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/defaults.list
 
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/locale/{sr@ije,sr@ijekavian}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 
 %find_lang gnome-vfs-2.0
 
