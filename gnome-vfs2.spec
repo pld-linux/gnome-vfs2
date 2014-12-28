@@ -32,7 +32,7 @@ BuildRequires:	dbus-glib-devel >= 0.73
 BuildRequires:	docbook-dtd412-xml >= 1.0-10
 BuildRequires:	fam-devel
 BuildRequires:	flex
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk-doc >= 1.8
