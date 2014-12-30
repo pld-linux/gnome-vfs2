@@ -150,6 +150,8 @@ Dokumentacja API gnome-vfs.
 	%{__enable_disable hal hal} \
 	--disable-howl \
 	--disable-schemas-install \
+	--with-samba-includes=`pkg-config --variable=includedir smbclient` \
+	--enable-samba \
 	%{!?with_static_libs:--disable-static} \
 	--enable-gtk-doc \
 	--enable-ipv6 \
