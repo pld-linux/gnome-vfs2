@@ -1,0 +1,38 @@
+--- gnome-vfs-2.24.4/libgnomevfs/gnome-vfs-ssl.c.org	2018-09-17 09:44:37.695718282 +0200
++++ gnome-vfs-2.24.4/libgnomevfs/gnome-vfs-ssl.c	2018-09-17 09:46:32.792578650 +0200
+@@ -72,6 +72,7 @@ typedef struct {
+ #ifdef HAVE_OPENSSL
+ 	int sockfd;
+ 	SSL *ssl;
++	SSL_CTX *ctx;
+ 	struct timeval *timeout;
+ #elif defined HAVE_GNUTLS
+ 	int sockfd;
+@@ -367,6 +368,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSS
+ 
+         /* FIXME: SSL_CTX_set_verify (ssl_ctx, SSL_VERIFY_PEER, &ssl_verify);*/
+         ssl->private->ssl = SSL_new (ssl_ctx);
++	ssl->private->ctx = ssl_ctx;
+ 
+ 	if (ssl->private->ssl == NULL) {
+ 		return GNOME_VFS_ERROR_IO;
+@@ -400,8 +402,8 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSS
+ 			}
+ 		}
+ 
+-                if (ssl->private->ssl->ctx)
+-                        SSL_CTX_free (ssl->private->ssl->ctx);
++                if (ssl->private->ctx)
++                        SSL_CTX_free (ssl->private->ctx);
+ 
+                 SSL_free (ssl->private->ssl);
+ 		g_free (ssl->private);
+@@ -705,7 +707,7 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
+ 		}
+ 	}
+ 	
+-	SSL_CTX_free (ssl->private->ssl->ctx);
++	SSL_CTX_free (ssl->private->ctx);
+ 	SSL_free (ssl->private->ssl);
+ 	close (ssl->private->sockfd);
+ 	if (ssl->private->timeout)
