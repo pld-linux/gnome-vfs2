@@ -119,9 +119,7 @@ Summary:	gnome-vfs API documentation
 Summary(pl.UTF-8):	Dokumentacja API gnome-vfs
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 gnome-vfs API documentation.
