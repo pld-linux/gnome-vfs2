@@ -1,0 +1,11 @@
+--- gnome-vfs-2.24.4/test/test-async-directory.c~	2010-02-09 13:16:14.000000000 +0100
++++ gnome-vfs-2.24.4/test/test-async-directory.c	2025-07-19 17:45:39.763913194 +0200
+@@ -233,7 +233,7 @@ main (int argc, char **argv)
+ 	GOptionContext *ctx = NULL;
+ 	GError *error = NULL;
+ 
+-	g_printf("Initializing gnome-libs...");
++	g_print("Initializing gnome-libs...");
+ 
+ 	ctx = g_option_context_new("test-vfs");
+ 	g_option_context_add_main_entries(ctx, options, NULL);
